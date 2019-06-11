@@ -6,7 +6,7 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="商品名を検索"
         single-line
         hide-details
       ></v-text-field>
@@ -56,7 +56,7 @@
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error" icon="warning"
-          >Your search for "{{ search }}" found no results.</v-alert
+          >"{{ search }}"の検索結果はありませんでした。</v-alert
         >
       </template>
     </v-data-table>
