@@ -28,9 +28,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <span v-show="props.item.small_category_id != null">
@@ -38,9 +38,9 @@
               >check_circle</v-icon
             >
           </span>
-          <span v-show="props.item.small_category_id == null" class="caption">{{
-            props.item.small_category_id
-          }}</span>
+          <span v-show="props.item.small_category_id == null" class="caption">
+            {{ props.item.small_category_id }}
+          </span>
         </td>
         <td>
           <v-btn icon dark color="primary">
@@ -71,7 +71,7 @@ import SweetsModel from '../models/SweetsModel';
 import ShopModel from '../models/ShopModel';
 
 @Component
-export default class ItemList extends Vue {
+export default class Home extends Vue {
   private search: string = '';
   private sweets: SweetsModel[] = sweetsSampleResponse;
   private shops: ShopModel[] = shopSampleResponse;
