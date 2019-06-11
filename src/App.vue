@@ -13,7 +13,7 @@
         <v-list-tile-action>
           <v-icon>view_list</v-icon>
         </v-list-tile-action>
-        <v-list-tile-title>商品一覧 </v-list-tile-title>
+        <v-list-tile-title>商品一覧</v-list-tile-title>
       </v-list-tile>
     </v-navigation-drawer>
 
@@ -27,6 +27,9 @@
         contain
       ></v-img>
     </v-toolbar>
+    <v-content>
+      <router-view />
+    </v-content>
   </v-app>
 </template>
 
