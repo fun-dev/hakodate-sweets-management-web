@@ -28,9 +28,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">{{
-            new Date(props.item.updated_at).toLocaleString()
-          }}</span>
+          <span class="caption">
+            {{ new Date(props.item.updated_at).toLocaleString() }}
+          </span>
         </td>
         <td class="text-xs-center">
           <span v-show="props.item.small_category_id != null">
@@ -38,12 +38,12 @@
               >check_circle</v-icon
             >
           </span>
-          <span v-show="props.item.small_category_id == null" class="caption">
-            {{ props.item.small_category_id }}
-          </span>
+          <span v-show="props.item.small_category_id == null" class="caption">{{
+            props.item.small_category_id
+          }}</span>
         </td>
         <td>
-          <v-dialog>
+          <v-dialog width="650">
             <template v-slot:activator="{ on }">
               <v-btn icon dark color="primary">
                 <v-icon v-on="on">visibility</v-icon>

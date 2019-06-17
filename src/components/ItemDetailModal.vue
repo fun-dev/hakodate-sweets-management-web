@@ -1,7 +1,7 @@
 <template>
   <v-layout column>
-    <v-card sm3>
-      <v-img :src="sweet.imagePath" aspect-ratio="2"></v-img>
+    <v-card>
+      <v-img :src="sweet.imagePath" aspect-ratio="1.8"></v-img>
       <v-card-title primary-title>
         <v-layout row>
           <v-layout column>
