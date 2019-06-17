@@ -30,7 +30,6 @@
 <script lang="ts">
 import { Vue, Component, Prop, Emit } from 'vue-property-decorator';
 import SweetsModel from '../models/SweetsModel.vue';
-import ShopModel from '../models/ShopModel.vue';
 
 @Component
 export default class ItemDetailModal extends Vue {
@@ -41,6 +40,5 @@ export default class ItemDetailModal extends Vue {
 
   @Prop()
   public sweet!: SweetsModel;
-  public shop!: ShopModel;
 }
 </script>
