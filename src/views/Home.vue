@@ -28,9 +28,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <span v-show="props.item.small_category_id != null">
@@ -38,9 +38,9 @@
               >check_circle</v-icon
             >
           </span>
-          <span v-show="props.item.small_category_id == null" class="caption">{{
-            props.item.small_category_id
-          }}</span>
+          <span v-show="props.item.small_category_id == null" class="caption">
+            {{ props.item.small_category_id }}
+          </span>
         </td>
         <td>
           <v-dialog>
@@ -51,11 +51,7 @@
             </template>
             <ItemDetailModal
               @modalClose="switchShowModal"
-              :sweet_name="props.item.name"
-              :sweet_category="props.item.small_category_id"
-              :sweet_description="props.item.description"
-              :sweet_price="props.item.price"
-              :shop_name="shops[props.item.shop_id - 1].name"
+              :sweet="props.item"
             ></ItemDetailModal>
           </v-dialog>
           <v-btn icon dark color="grey">
