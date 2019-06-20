@@ -28,9 +28,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <span v-show="props.item.small_category_id != null">
@@ -38,9 +38,9 @@
               >check_circle</v-icon
             >
           </span>
-          <span v-show="props.item.small_category_id == null" class="caption">{{
-            props.item.small_category_id
-          }}</span>
+          <span v-show="props.item.small_category_id == null" class="caption">
+            {{ props.item.small_category_id }}
+          </span>
         </td>
         <td>
           <v-dialog width="650">
@@ -54,7 +54,12 @@
               :sweet="props.item"
             ></ItemDetailModal>
           </v-dialog>
-          <v-btn icon dark color="grey">
+          <v-btn
+            icon
+            dark
+            color="grey"
+            :to="{ name: 'itemEdit', params: { id: props.item.id - 1 } }"
+          >
             <v-icon @click="editItem(props.item)">edit</v-icon>
           </v-btn>
           <v-btn icon dark color="red">
