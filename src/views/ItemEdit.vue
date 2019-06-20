@@ -5,7 +5,7 @@
         <v-card class="ma-2">
           <v-card-text>
             <v-text-field
-              v-model="sweet[id].name"
+              v-model="sweets[id].name"
               label="商品名"
               required
               disabled
@@ -13,7 +13,7 @@
           </v-card-text>
           <v-card-text>
             <v-text-field
-              v-model="sweet[id].price"
+              v-model="sweets[id].price"
               label="商品価格"
               required
               disabled
@@ -21,18 +21,27 @@
           </v-card-text>
           <v-card-text>
             <v-text-field
-              v-model="sweet[id].description"
+              v-model="sweets[id].description"
               label="商品説明"
               required
               disabled
             ></v-text-field>
           </v-card-text>
           <v-card-text>
-            <v-select :items="categorys" label="カテゴリ"></v-select>
+            <v-select
+              v-model="selectSweetsCategory"
+              :items="sweetsCategory"
+              item-text="name"
+              item-value="id"
+              label="カテゴリ"
+              return-object
+            ></v-select>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue" dark @click="saveItem">SAVE</v-btn>
+            <v-btn color="blue" dark @click="saveItem(selectSweetsCategory.id)"
+              >SAVE</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -43,30 +52,22 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
-import SweetsModel from '../models/SweetsModel';
+import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
+import SweetsModel from '@/models/SweetsModel';
+import SweetsCategoryModel from '@/models/SweetsCategoryModel';
 
 @Component
 export default class ItemEdit extends Vue {
-  public sweet: SweetsModel[] = sweetsSampleResponse;
-  public categorys: string[] = [
-    '大福',
-    '団子',
-    'どら焼き',
-    'モナカ',
-    '羊かん',
-    'アイス',
-    'ケーキ',
-    'ロール',
-    'シュークリーム',
-    'チョコ',
-    'パイ',
-    'パン',
-    '未分類',
-  ];
-
   @Prop()
   public id!: number;
 
-  public saveItem() {}
+  public sweets: SweetsModel[] = sweetsSampleResponse;
+  public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
+  public selectSweetsCategory: object = {
+    id: this.sweets[this.id].small_category_id,
+  };
+  public saveItem(category: string) {
+    console.log(category);
+  }
 }
 </script>
