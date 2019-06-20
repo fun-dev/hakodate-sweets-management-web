@@ -34,7 +34,7 @@
         </td>
         <td class="text-xs-center">
           <span v-show="props.item.small_category_id != null">
-            <v-icon color="success" @click="showItem(props.item)"
+            <v-icon color="success" @click="switchShowModal()"
               >check_circle</v-icon
             >
           </span>
@@ -43,9 +43,17 @@
           }}</span>
         </td>
         <td>
-          <v-btn icon dark color="primary">
-            <v-icon @click="showItem(props.item)">visibility</v-icon>
-          </v-btn>
+          <v-dialog width="650">
+            <template v-slot:activator="{ on }">
+              <v-btn icon dark color="primary">
+                <v-icon v-on="on">visibility</v-icon>
+              </v-btn>
+            </template>
+            <ItemDetailModal
+              @modalClose="switchShowModal"
+              :sweet="props.item"
+            ></ItemDetailModal>
+          </v-dialog>
           <v-btn icon dark color="grey">
             <v-icon @click="editItem(props.item)">edit</v-icon>
           </v-btn>
@@ -69,13 +77,19 @@ import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
 import shopSampleResponse from '@/demodatas/ShopDemodatasample';
 import SweetsModel from '../models/SweetsModel';
 import ShopModel from '../models/ShopModel';
+import ItemDetailModal from '@/components/ItemDetailModal.vue';
 
-@Component
+@Component({
+  components: {
+    ItemDetailModal,
+  },
+})
 export default class Home extends Vue {
-  private search: string = '';
-  private sweets: SweetsModel[] = sweetsSampleResponse;
-  private shops: ShopModel[] = shopSampleResponse;
-  private headers: object[] = [
+  public dialog: boolean = false;
+  public search: string = '';
+  public sweets: SweetsModel[] = sweetsSampleResponse;
+  public shops: ShopModel[] = shopSampleResponse;
+  public headers: object[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
@@ -90,7 +104,9 @@ export default class Home extends Vue {
     { text: 'アクション', sortable: false, align: 'left' },
   ];
 
-  public showItem(item: SweetsModel) {}
+  public switchShowModal() {
+    this.dialog = !this.dialog;
+  }
   public editItem(item: SweetsModel) {}
   public deleteItem(item: SweetsModel) {}
 }
