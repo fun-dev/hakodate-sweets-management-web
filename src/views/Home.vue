@@ -11,7 +11,12 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <v-data-table :headers="headers" :items="sweets" :search="search">
+    <v-data-table
+      :headers="headers"
+      :items="sweets"
+      :search="search"
+      rows-per-page-text="表示数"
+    >
       <template v-slot:items="props">
         <td>
           <v-avatar size="36px">
@@ -28,19 +33,12 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">{{
-            new Date(props.item.updated_at).toLocaleString()
-          }}</span>
+          <span class="caption">
+            {{ new Date(props.item.updated_at).toLocaleString() }}
+          </span>
         </td>
         <td class="text-xs-center">
-          <span v-show="props.item.small_category_id != null">
-            <v-icon color="success" @click="switchShowModal()"
-              >check_circle</v-icon
-            >
-          </span>
-          <span v-show="props.item.small_category_id == null" class="caption">
-            {{ props.item.small_category_id }}
-          </span>
+          <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
         <td>
           <v-dialog width="650">
@@ -63,7 +61,7 @@
             <v-icon @click="editItem(props.item)">edit</v-icon>
           </v-btn>
           <v-btn icon dark color="red">
-            <v-icon @click="deleteItem(props.item)">delete</v-icon>
+            <v-icon @click="deleteItem(props.item)" disabled>delete</v-icon>
           </v-btn>
         </td>
       </template>
@@ -83,6 +81,8 @@ import shopSampleResponse from '@/demodatas/ShopDemodatasample';
 import SweetsModel from '../models/SweetsModel';
 import ShopModel from '../models/ShopModel';
 import ItemDetailModal from '@/components/ItemDetailModal.vue';
+import SweetsCategoryModel from '@/models/SweetsCategoryModel';
+import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
 
 @Component({
   components: {
@@ -94,17 +94,19 @@ export default class Home extends Vue {
   public search: string = '';
   public sweets: SweetsModel[] = sweetsSampleResponse;
   public shops: ShopModel[] = shopSampleResponse;
+  public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
+
   public headers: object[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
-    { text: '商品価格', value: 'price' },
+    { text: '商品価格', value: 'price', sortable: false },
     { text: '最終更新日', value: 'updated_at' },
     {
-      text: 'ステータス',
+      text: 'カテゴリ',
       sortable: false,
       value: 'small_category_id',
-      align: 'left',
+      align: 'center',
     },
     { text: 'アクション', sortable: false, align: 'left' },
   ];
