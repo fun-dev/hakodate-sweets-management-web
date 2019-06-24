@@ -33,9 +33,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <v-chip color="red" text-color="white">未設定</v-chip>
@@ -96,7 +96,12 @@ export default class Home extends Vue {
   public shops: ShopModel[] = shopSampleResponse;
   public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
 
-  public headers: object[] = [
+  public headers: {
+    text: string;
+    sortable?: boolean;
+    value?: string;
+    align?: AlignSetting;
+  }[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
