@@ -29,19 +29,47 @@
           </v-card-text>
           <v-card-text>
             <v-select
-              v-model="selectSweetsCategory"
-              :items="sweetsCategory"
+              v-model="selectedLargeCategory"
+              :items="largeCategories"
               item-text="name"
               item-value="id"
-              label="カテゴリ"
+              label="大カテゴリ"
+              return-object
+            ></v-select>
+          </v-card-text>
+          <v-card-text>
+            <v-select
+              v-model="selectedSmallCategory1"
+              :items="filteredSmallCategories"
+              item-text="name"
+              item-value="id"
+              label="小カテゴリ1"
+              return-object
+            ></v-select>
+          </v-card-text>
+          <v-card-text>
+            <v-select
+              v-model="selectSweetsCategory2"
+              :items="filteredSmallCategories"
+              item-text="name"
+              item-value="id"
+              label="小カテゴリ2"
+              return-object
+            ></v-select>
+          </v-card-text>
+          <v-card-text>
+            <v-select
+              v-model="selectSweetsCategory3"
+              :items="filteredSmallCategories"
+              item-text="name"
+              item-value="id"
+              label="小カテゴリ3"
               return-object
             ></v-select>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue" dark @click="saveItem(selectSweetsCategory.id)"
-              >SAVE</v-btn
-            >
+            <v-btn color="blue" dark to="/">保存</v-btn>
           </v-card-actions>
         </v-card>
       </v-flex>
@@ -55,6 +83,8 @@ import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
 import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
 import SweetsModel from '@/models/SweetsModel';
 import SweetsCategoryModel from '@/models/SweetsCategoryModel';
+import LargeCategoryModel from '@/models/LargeCategoryModel';
+import { largeCategories } from '@/demodatas/LargeCategoryDemodata';
 
 @Component
 export default class ItemEdit extends Vue {
@@ -63,11 +93,33 @@ export default class ItemEdit extends Vue {
 
   public sweets: SweetsModel[] = sweetsSampleResponse;
   public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
-  public selectSweetsCategory: object = {
+  private largeCategories = largeCategories;
+
+  private selectedLargeCategory = {
+    id: 1,
+  };
+
+  public selectedSmallCategory1: object = {
     id: this.sweets[this.id].small_category_id,
   };
+  public selectedSmallCategory2: object = {
+    id: 14,
+  };
+  public selectedSmallCategory3: object = {
+    id: 14,
+  };
   public saveItem(category: string) {
-    console.log(category);
+    // console.log(category);
+  }
+
+  private get filteredSmallCategories() {
+    return [
+      ...this.sweetsCategory.filter(
+        smallCategory =>
+          smallCategory.large_category_id === this.selectedLargeCategory.id
+      ),
+      { id: 999, name: 'なし' },
+    ];
   }
 }
 </script>
