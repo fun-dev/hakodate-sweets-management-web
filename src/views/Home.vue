@@ -76,6 +76,7 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
+import axios from 'axios';
 import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
 import shopSampleResponse from '@/demodatas/ShopDemodatasample';
 import SweetsModel from '../models/SweetsModel';
@@ -92,10 +93,9 @@ import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmap
 export default class Home extends Vue {
   public dialog: boolean = false;
   public search: string = '';
-  public sweets: SweetsModel[] = sweetsSampleResponse;
-  public shops: ShopModel[] = shopSampleResponse;
+  public sweets: SweetsModel[] = [];
+  public shops: ShopModel[] = [];
   public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
-
   public headers: object[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
@@ -110,11 +110,24 @@ export default class Home extends Vue {
     },
     { text: 'アクション', sortable: false, align: 'left' },
   ];
-
   public switchShowModal() {
     this.dialog = !this.dialog;
   }
   public editItem(item: SweetsModel) {}
   public deleteItem(item: SweetsModel) {}
+  public getSweets() {
+    axios
+      .get('http://sweetsapi.per.c.fun.ac.jp/sweets/')
+      .then(response => (this.sweets = response.data));
+  }
+  public getShops() {
+    axios
+      .get('http://sweetsapi.per.c.fun.ac.jp/shops/')
+      .then(response => (this.shops = response.data));
+  }
+  mounted() {
+    this.getSweets();
+    this.getShops();
+  }
 }
 </script>
