@@ -33,9 +33,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <v-chip color="red" text-color="white">未設定</v-chip>
@@ -115,15 +115,17 @@ export default class Home extends Vue {
   }
   public editItem(item: SweetsModel) {}
   public deleteItem(item: SweetsModel) {}
-  public getSweets() {
-    axios
-      .get('http://sweetsapi.per.c.fun.ac.jp/sweets/')
-      .then(response => (this.sweets = response.data));
+  public async getSweets() {
+    const response = await axios.get<SweetsModel[]>(
+      'http://sweetsapi.per.c.fun.ac.jp/sweets/'
+    );
+    this.sweets = response.data;
   }
-  public getShops() {
-    axios
-      .get('http://sweetsapi.per.c.fun.ac.jp/shops/')
-      .then(response => (this.shops = response.data));
+  public async getShops() {
+    const response = await axios.get<ShopModel[]>(
+      'http://sweetsapi.per.c.fun.ac.jp/shops/'
+    );
+    this.shops = response.data;
   }
   mounted() {
     this.getSweets();
