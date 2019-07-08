@@ -29,16 +29,13 @@
         <td>
           <span class="caption">{{ shops[props.item.shop_id - 1].name }}</span>
         </td>
-        <td>
-          <span class="caption">{{ props.item.price }}</span>
+        <td class="text-xs-center">
+          <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
         <td>
           <span class="caption">{{
             new Date(props.item.updated_at).toLocaleString()
           }}</span>
-        </td>
-        <td class="text-xs-center">
-          <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
         <td>
           <v-dialog width="650">
@@ -100,14 +97,13 @@ export default class Home extends Vue {
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
-    { text: '商品価格', value: 'price', sortable: false },
-    { text: '最終更新日', value: 'updated_at' },
     {
       text: 'カテゴリ',
       sortable: false,
       value: 'small_category_id',
       align: 'center',
     },
+    { text: '最終更新日', value: 'updated_at' },
     { text: 'アクション', sortable: false, align: 'left' },
   ];
   public switchShowModal() {
