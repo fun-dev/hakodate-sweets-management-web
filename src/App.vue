@@ -9,12 +9,16 @@
       overflow
       app
     >
-      <v-list-tile>
-        <v-list-tile-action>
-          <v-icon>view_list</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-title>商品一覧</v-list-tile-title>
-      </v-list-tile>
+      <v-list>
+        <v-list-tile to="/">
+          <v-list-tile-action>
+            <v-icon>view_list</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title v-show="!miniVariant">
+            <span>商品一覧</span>
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
     </v-navigation-drawer>
 
     <v-toolbar app clipped-left>
