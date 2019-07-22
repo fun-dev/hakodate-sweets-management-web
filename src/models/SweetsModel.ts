@@ -5,7 +5,7 @@ type SweetsModel = {
   price: string;
   description: string;
   imagePath: string;
-  small_category_id: number;
+  large_category_id: number;
   created_at: string;
   updated_at: string;
   from_rdf?: boolean;
