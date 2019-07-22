@@ -9,6 +9,6 @@ type SweetsModel = {
   small_category_ids: number[];
   created_at: string;
   updated_at: string;
-  from_rdf?: boolean;
+  from_rdf: boolean;
 };
 export default SweetsModel;
