@@ -16,6 +16,7 @@
       :items="sweets"
       :search="search"
       rows-per-page-text="表示数"
+      :rows-per-page-items="rowsPerPageItems"
     >
       <template v-slot:items="props">
         <td>
@@ -29,16 +30,20 @@
         <td>
           <span class="caption">{{ shops[props.item.shop_id - 1].name }}</span>
         </td>
-        <td>
-          <span class="caption">{{ props.item.price }}</span>
+        <td class="text-xs-center">
+          <v-chip color="red" text-color="white">未設定</v-chip>
+        </td>
+        <td class="text-xs-center">
+          <v-layourt row>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
+          </v-layourt>
         </td>
         <td>
           <span class="caption">
             {{ new Date(props.item.updated_at).toLocaleString() }}
           </span>
-        </td>
-        <td class="text-xs-center">
-          <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
         <td>
           <v-dialog width="650">
@@ -85,30 +90,42 @@ import ItemDetailModal from '@/components/ItemDetailModal.vue';
 import { SmallSweetsCategory } from '@/models/SweetsCategoryModel';
 import { smallCategorySampleResponse } from '@/demodatas/SmallCategory';
 
-@Component({
-  components: {
-    ItemDetailModal,
-  },
-})
+type Header = {
+  text?: string;
+  sortable?: boolean;
+  value?: string;
+  align?: AlignSetting;
+};
 export default class Home extends Vue {
   public dialog: boolean = false;
   public search: string = '';
   public sweets: SweetsModel[] = [];
   public shops: ShopModel[] = [];
   public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
-  public headers: object[] = [
+  public headers: Header[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
-    { text: '商品価格', value: 'price', sortable: false },
-    { text: '最終更新日', value: 'updated_at' },
     {
-      text: 'カテゴリ',
+      text: '大カテゴリ',
       sortable: false,
       value: 'small_category_id',
       align: 'center',
     },
+    {
+      text: '小カテゴリ',
+      sortable: false,
+      value: 'large_catgeory_id',
+      align: 'center',
+    },
+    { text: '最終更新日', value: 'updated_at' },
     { text: 'アクション', sortable: false, align: 'left' },
+  ];
+  public rowsPerPageItems: {}[] = [
+    10,
+    25,
+    50,
+    { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 },
   ];
   public switchShowModal() {
     this.dialog = !this.dialog;
