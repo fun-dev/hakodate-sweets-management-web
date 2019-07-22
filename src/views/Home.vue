@@ -16,6 +16,7 @@
       :items="sweets"
       :search="search"
       rows-per-page-text="表示数"
+      :rows-per-page-items="rowsPerPageItems"
     >
       <template v-slot:items="props">
         <td>
@@ -100,18 +101,35 @@ export default class Home extends Vue {
   public sweets: SweetsModel[] = [];
   public shops: ShopModel[] = [];
   public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
-  public headers: object[] = [
+  public headers: {
+    text?: string;
+    sortable?: boolean;
+    value?: string;
+    align?: string;
+  }[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
     {
-      text: 'カテゴリ',
+      text: '大カテゴリ',
       sortable: false,
       value: 'small_category_id',
       align: 'center',
     },
+    {
+      text: '小カテゴリ',
+      sortable: false,
+      value: 'large_catgeory_id',
+      align: 'center',
+    },
     { text: '最終更新日', value: 'updated_at' },
     { text: 'アクション', sortable: false, align: 'left' },
+  ];
+  public rowsPerPageItems: {}[] = [
+    10,
+    25,
+    50,
+    { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 },
   ];
   public switchShowModal() {
     this.dialog = !this.dialog;
