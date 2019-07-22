@@ -1,5 +1,5 @@
 import ShopModel from '@/models/ShopModel';
-const shopSampleResponse: ShopModel[] =[
+export const shopSampleResponse: ShopModel[] =[
 {
 id: 1,
 name: "パティスリー　ジョリクレール",
@@ -1643,6 +1643,5 @@ updated_at: "2019-05-27T06:05:04.000Z"
 ]
 
 
-export default shopSampleResponse;
 
 
