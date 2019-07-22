@@ -5,10 +5,9 @@ type SweetsModel = {
   price: string;
   description: string;
   imagePath: string;
-  large_category_id: number;
-  small_category_ids: number[];
+  small_category_id: number;
   created_at: string;
   updated_at: string;
-  from_rdf: boolean;
+  from_rdf?: boolean;
 };
 export default SweetsModel;

@@ -33,9 +33,9 @@
           <span class="caption">{{ props.item.price }}</span>
         </td>
         <td>
-          <span class="caption">
-            {{ new Date(props.item.updated_at).toLocaleString() }}
-          </span>
+          <span class="caption">{{
+            new Date(props.item.updated_at).toLocaleString()
+          }}</span>
         </td>
         <td class="text-xs-center">
           <v-chip color="red" text-color="white">未設定</v-chip>
@@ -77,13 +77,13 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import axios from 'axios';
-import { sweetsSampleResponse } from '@/demodatas/Sweets';
-import { shopSampleResponse } from '@/demodatas/Shop';
+import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
+import shopSampleResponse from '@/demodatas/ShopDemodatasample';
 import SweetsModel from '../models/SweetsModel';
 import ShopModel from '../models/ShopModel';
 import ItemDetailModal from '@/components/ItemDetailModal.vue';
-import { SmallSweetsCategory } from '@/models/SweetsCategoryModel';
-import { smallCategorySampleResponse } from '@/demodatas/SmallCategory';
+import SweetsCategoryModel from '@/models/SweetsCategoryModel';
+import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
 
 @Component({
   components: {
@@ -95,7 +95,7 @@ export default class Home extends Vue {
   public search: string = '';
   public sweets: SweetsModel[] = [];
   public shops: ShopModel[] = [];
-  public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
+  public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
   public headers: object[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
