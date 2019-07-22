@@ -79,12 +79,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
-import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
+import { sweetsSampleResponse } from '@/demodatas/Sweets';
+import { smallCategorySampleResponse } from '@/demodatas/SmallCategory';
 import SweetsModel from '@/models/SweetsModel';
-import SweetsCategoryModel from '@/models/SweetsCategoryModel';
-import LargeCategoryModel from '@/models/LargeCategoryModel';
-import { largeCategories } from '@/demodatas/LargeCategoryDemodata';
+import { SmallSweetsCategory } from '@/models/SweetsCategoryModel';
+import { LargeSweetsCategory } from '@/models/SweetsCategoryModel';
+import { largeCategoriesSampleResponse } from '@/demodatas/LargeCategory';
 
 @Component
 export default class ItemEdit extends Vue {
@@ -92,15 +92,15 @@ export default class ItemEdit extends Vue {
   public id!: number;
 
   public sweets: SweetsModel[] = sweetsSampleResponse;
-  public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
-  private largeCategories = largeCategories;
+  public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
+  private largeCategories = largeCategoriesSampleResponse;
 
   private selectedLargeCategory = {
     id: 1,
   };
 
   public selectedSmallCategory1: object = {
-    id: this.sweets[this.id].small_category_id,
+    id: this.sweets[this.id].small_category_ids[0],
   };
   public selectedSmallCategory2: object = {
     id: 14,

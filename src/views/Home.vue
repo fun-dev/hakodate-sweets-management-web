@@ -82,13 +82,13 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator';
 import axios from 'axios';
-import sweetsSampleResponse from '@/demodatas/SweetsDemodatasample';
-import shopSampleResponse from '@/demodatas/ShopDemodatasample';
+import { sweetsSampleResponse } from '@/demodatas/Sweets';
+import { shopSampleResponse } from '@/demodatas/Shop';
 import SweetsModel from '../models/SweetsModel';
 import ShopModel from '../models/ShopModel';
 import ItemDetailModal from '@/components/ItemDetailModal.vue';
-import SweetsCategoryModel from '@/models/SweetsCategoryModel';
-import sweetsCategorySampleResponse from '@/demodatas/SweetsCategoryDemodatasmaple';
+import { SmallSweetsCategory } from '@/models/SweetsCategoryModel';
+import { smallCategorySampleResponse } from '@/demodatas/SmallCategory';
 
 @Component({
   components: {
@@ -100,13 +100,8 @@ export default class Home extends Vue {
   public search: string = '';
   public sweets: SweetsModel[] = [];
   public shops: ShopModel[] = [];
-  public sweetsCategory: SweetsCategoryModel[] = sweetsCategorySampleResponse;
-  public headers: {
-    text?: string;
-    sortable?: boolean;
-    value?: string;
-    align?: string;
-  }[] = [
+  public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
+  public headers: object[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
