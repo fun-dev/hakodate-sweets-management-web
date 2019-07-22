@@ -34,10 +34,10 @@
           <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
         <td class="text-xs-center">
-          <v-layourt column>
-            <v-chip color="red" text-color="white">未設定</v-chip>
-            <v-chip color="red" text-color="white">未設定</v-chip>
-            <v-chip color="red" text-color="white">未設定</v-chip>
+          <v-layourt row>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
+            <v-chip color="red" text-color="white" small>未設定</v-chip>
           </v-layourt>
         </td>
         <td>
