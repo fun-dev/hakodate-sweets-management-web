@@ -41,9 +41,9 @@
           </v-layourt>
         </td>
         <td>
-          <span class="caption">{{
-            new Date(props.item.updated_at).toLocaleString()
-          }}</span>
+          <span class="caption">
+            {{ new Date(props.item.updated_at).toLocaleString() }}
+          </span>
         </td>
         <td>
           <v-dialog width="650">
@@ -90,18 +90,19 @@ import ItemDetailModal from '@/components/ItemDetailModal.vue';
 import { SmallSweetsCategory } from '@/models/SweetsCategoryModel';
 import { smallCategorySampleResponse } from '@/demodatas/SmallCategory';
 
-@Component({
-  components: {
-    ItemDetailModal,
-  },
-})
+type Header = {
+  text?: string;
+  sortable?: boolean;
+  value?: string;
+  align?: AlignSetting;
+};
 export default class Home extends Vue {
   public dialog: boolean = false;
   public search: string = '';
   public sweets: SweetsModel[] = [];
   public shops: ShopModel[] = [];
   public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
-  public headers: object[] = [
+  public headers: Header[] = [
     { text: '', sortable: false, value: 'name' },
     { text: '商品名', sortable: false, value: 'name', align: 'left' },
     { text: '販売店舗', sortable: false, value: 'shop_id', align: 'left' },
