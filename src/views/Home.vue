@@ -32,6 +32,13 @@
         <td class="text-xs-center">
           <v-chip color="red" text-color="white">未設定</v-chip>
         </td>
+        <td class="text-xs-center">
+          <v-layourt column>
+            <v-chip color="red" text-color="white">未設定</v-chip>
+            <v-chip color="red" text-color="white">未設定</v-chip>
+            <v-chip color="red" text-color="white">未設定</v-chip>
+          </v-layourt>
+        </td>
         <td>
           <span class="caption">{{
             new Date(props.item.updated_at).toLocaleString()
