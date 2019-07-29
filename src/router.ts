@@ -25,5 +25,13 @@ export default new Router({
       }),
       component: () => import('@/views/ItemEdit.vue'),
     },
+    {
+      path: '/detail/:id',
+      name: 'itemDetail',
+      props: route => ({
+        id: Number(route.params.id),
+      }),
+      component: () => import('@/views/ItemDetail.vue'),
+    },
   ],
 });
