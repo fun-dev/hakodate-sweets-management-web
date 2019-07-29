@@ -96,6 +96,8 @@ type Header = {
   value?: string;
   align?: AlignSetting;
 };
+
+@Component
 export default class Home extends Vue {
   public dialog: boolean = false;
   public search: string = '';
