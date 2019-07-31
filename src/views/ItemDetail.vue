@@ -114,12 +114,13 @@ import { shopSampleResponse } from '@/demodatas/Shop';
 @Component
 export default class ItemDetail extends Vue {
   @Prop()
-  public id!: number;
+  public propsId!: number;
 
   public sweets: SweetsModel[] = sweetsSampleResponse;
   public shops: ShopModel[] = shopSampleResponse;
   public sweetsCategory: SmallSweetsCategory[] = smallCategorySampleResponse;
   public largeCategories = largeCategoriesSampleResponse;
+  public id: number = this.propsId;
 
   public sweet: SweetsModel = this.sweets[this.id - 1];
   public shop: ShopModel = this.shops[this.sweet.shop_id - 1];

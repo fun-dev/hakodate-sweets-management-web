@@ -29,7 +29,7 @@ export default new Router({
       path: '/detail/:id',
       name: 'itemDetail',
       props: route => ({
-        id: Number(route.params.id),
+        propsId: Number(route.params.id),
       }),
       component: () => import('@/views/ItemDetail.vue'),
     },
