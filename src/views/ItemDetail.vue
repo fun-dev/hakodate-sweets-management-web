@@ -1,41 +1,98 @@
 <template>
   <v-container fluid>
-    <v-layout wrap column align-center>
+    <v-layout wrap column align-left>
       <v-flex xs12>
-        <v-layout row align-center>
+        <v-card-title class="display-1">
+          商品詳細
+        </v-card-title>
+      </v-flex>
+      <v-divider></v-divider>
+      <v-flex xs12>
+        <v-layout row align-center justify-center>
           <v-flex xs12 lg6>
-            <v-card flat>
-              <v-img :src="sweet.imagePath" aspect-ratio="1"></v-img>
-            </v-card>
+            <v-container>
+              <v-card class="ma2" flat color="tarnsparent">
+                <v-img
+                  :src="sweet.imagePath"
+                  contain
+                  height="500"
+                  min-width="300"
+                ></v-img>
+              </v-card>
+            </v-container>
           </v-flex>
           <v-flex xs12 lg6>
-            <v-layout column align-center justify-space-around fill-height>
-              <v-flex xs12>
-                <v-card class="ma2">
-                  <v-card-text>
-                    <span>商品の情報</span><br />
-                    <span>{{ sweet }}</span>
-                  </v-card-text>
-                </v-card>
-              </v-flex>
-              <v-flex xs12>
-                <v-card>
-                  <v-card-text>
-                    <span>お店の情報</span><br />
-                    <span>{{ shop }}</span>
-                  </v-card-text>
-                </v-card>
-              </v-flex>
+            <v-layout row>
+              <v-container>
+                <v-layout column>
+                  <v-flex xs12>
+                    <v-layout row align-start>
+                      <v-flex xs2>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text class="title">商品名</v-card-text>
+                        </v-card>
+                      </v-flex>
+                      <v-flex xs10>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text>
+                            <span class="display-2">
+                              {{ sweet.name }}
+                            </span>
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-layout row align-start>
+                      <v-flex xs2>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text class="title">商品価格</v-card-text>
+                        </v-card>
+                      </v-flex>
+                      <v-flex xs10>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text>
+                            <span class="display-1">
+                              {{ sweet.price }}
+                            </span>
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-layout row align-start>
+                      <v-flex xs2>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text class="title">商品説明</v-card-text>
+                        </v-card>
+                      </v-flex>
+                      <v-flex xs10>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text>
+                            <span class="body-1">
+                              {{ sweet.description }}
+                            </span>
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-flex>
+                </v-layout>
+              </v-container>
             </v-layout>
           </v-flex>
         </v-layout>
       </v-flex>
       <v-flex xs12>
-        <v-pagination
-          v-model="id"
-          :length="sweets.length - 1"
-          :total-visible="10"
-        ></v-pagination>
+        <v-layout column align-center justify-center>
+          <v-pagination
+            v-model="id"
+            :length="sweets.length - 1"
+            :total-visible="10"
+          ></v-pagination>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
