@@ -15,8 +15,8 @@
                 <v-img
                   :src="sweet.imagePath"
                   contain
-                  height="500"
-                  min-width="300"
+                  height="300"
+                  min-width="200"
                 ></v-img>
               </v-card>
             </v-container>
@@ -27,15 +27,15 @@
                 <v-layout column>
                   <v-flex xs12>
                     <v-layout row align-start>
-                      <v-flex xs2>
+                      <v-flex xs3>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text class="title">商品名</v-card-text>
                         </v-card>
                       </v-flex>
-                      <v-flex xs10>
+                      <v-flex xs9>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text>
-                            <span class="display-2">
+                            <span class="title">
                               {{ sweet.name }}
                             </span>
                           </v-card-text>
@@ -45,15 +45,15 @@
                   </v-flex>
                   <v-flex xs12>
                     <v-layout row align-start>
-                      <v-flex xs2>
+                      <v-flex xs3>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text class="title">商品価格</v-card-text>
                         </v-card>
                       </v-flex>
-                      <v-flex xs10>
+                      <v-flex xs9>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text>
-                            <span class="display-1">
+                            <span class="title">
                               {{ sweet.price }}
                             </span>
                           </v-card-text>
@@ -63,16 +63,34 @@
                   </v-flex>
                   <v-flex xs12>
                     <v-layout row align-start>
-                      <v-flex xs2>
+                      <v-flex xs3>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text class="title">商品説明</v-card-text>
                         </v-card>
                       </v-flex>
-                      <v-flex xs10>
+                      <v-flex xs9>
                         <v-card class="ma2" flat color="transparent">
                           <v-card-text>
-                            <span class="body-1">
+                            <span class="title">
                               {{ sweet.description }}
+                            </span>
+                          </v-card-text>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-layout row align-start>
+                      <v-flex xs3>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text class="title">店舗名</v-card-text>
+                        </v-card>
+                      </v-flex>
+                      <v-flex xs9>
+                        <v-card class="ma2" flat color="transparent">
+                          <v-card-text>
+                            <span class="title">
+                              {{ shop.name }}
                             </span>
                           </v-card-text>
                         </v-card>
