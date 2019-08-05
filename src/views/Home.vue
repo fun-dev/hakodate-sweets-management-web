@@ -46,17 +46,14 @@
           </span>
         </td>
         <td>
-          <v-dialog width="650">
-            <template v-slot:activator="{ on }">
-              <v-btn icon dark color="primary">
-                <v-icon v-on="on">visibility</v-icon>
-              </v-btn>
-            </template>
-            <ItemDetailModal
-              @modalClose="switchShowModal"
-              :sweet="props.item"
-            ></ItemDetailModal>
-          </v-dialog>
+          <v-btn
+            icon
+            dark
+            color="primary"
+            :to="{ name: 'itemDetail', params: { propsId: props.item.id - 1 } }"
+          >
+            <v-icon v-on="on">visibility</v-icon>
+          </v-btn>
           <v-btn
             icon
             dark
