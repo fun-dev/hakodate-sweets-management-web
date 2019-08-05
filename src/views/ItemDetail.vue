@@ -140,13 +140,13 @@ export default class ItemDetail extends Vue {
   public largeCategories = largeCategoriesSampleResponse;
   public id: number = this.propsId;
 
-  public sweet: SweetsModel = this.sweets[this.id - 1];
-  public shop: ShopModel = this.shops[this.sweet.shop_id - 1];
+  public sweet: SweetsModel = this.sweets[this.id];
+  public shop: ShopModel = this.shops[this.sweet.shop_id];
 
   @Watch('id')
   public idChanged() {
-    this.sweet = this.sweets[this.id - 1];
-    this.shop = this.shops[this.sweet.shop_id - 1];
+    this.sweet = this.sweets[this.id];
+    this.shop = this.shops[this.sweet.shop_id];
     window.history.pushState(null, '', String(this.id)); //url書き換え
   }
 }
