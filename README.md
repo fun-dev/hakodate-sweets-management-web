@@ -1,34 +1,27 @@
-# hakodate-sweets-webapp-ts
+# 函館スイーツ データ管理アプリ
 
-## Project setup
-```
-yarn install
-```
+## クイックスタート
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
+```shell
+$ yarn
+$ yarn dev
 ```
 
-### Compiles and minifies for production
-```
-yarn run build
-```
+## ドキュメント
 
-### Run your tests
-```
-yarn run test
-```
+### 開発環境
 
-### Lints and fixes files
-```
-yarn run lint
-```
+- [Node.js](docs/development_environment/NODE_JS.md)
+- [VSCode](docs/development_environment/VSCODE.md)
 
-### Run your unit tests
-```
-yarn run test:unit
-```
+### Git/GitHub
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- [ブランチ運用](docs/git_github/BRANCH.md)
+- [コミットプレフィックス](docs/git_github/COMMIT_PREFIX.md)
+- [:construction:コミットルール](docs/git_github/COMMIT_RULES.md)
+
+### 使用技術
+
+- [:construction:Next.js](docs/technology_used/NEXT_JS.md)
+- [:construction:ディレクトリ構成](docs/technology_used/DIRECTORY.md)
+- [:construction:状態管理](docs/technology_used/STATE_MANAGEMENT.md)

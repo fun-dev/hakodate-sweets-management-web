@@ -1,14 +1,29 @@
 module.exports = {
-  root: true,
   env: {
-    node: true
+    es6: true,
+    node: true,
   },
-  extends: ["plugin:vue/essential", "@vue/prettier", "@vue/typescript"],
-  rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off"
-  },
+  parser: "@typescript-eslint/parser",
+  plugins: ["react", "prettier", "@typescript-eslint"],
   parserOptions: {
-    parser: "@typescript-eslint/parser"
-  }
+    version: 2018,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "plugin:@typescript-eslint/recommended",
+  ],
+  rules: {
+    "prettier/prettier": "error",
+    "no-empty-pattern": "off",
+    "@typescript-eslint/camelcase": "off",
+    "react/prop-types": "off",
+  },
 };
