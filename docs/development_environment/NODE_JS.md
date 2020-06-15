@@ -9,7 +9,6 @@ anyenvからNode.jsのバージョン管理ツールのnodenvをインストー�
 # install anyenv
 $ brew install anyenv
 $ echo 'eval "$(anyenv init -)"' >> ~/.bash_profile # zshを使っている人は．~/.zprofile or ~/.zshrc
-$ echo 'eval "$(anyenv init -)"' >> ~/.bash_profile # zshを使っている人は．~/.zprofile or ~/.zshrc
 $ exec $SHELL -l
 $ anyenv install --init
 $ exec $SHELL -l
