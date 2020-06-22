@@ -2,7 +2,7 @@ import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-
 import { Shop } from 'src/lib/api/models/Shop';
 import Link from 'next/link';
 import styled from 'styled-components';
-
+// new change2
 type Props = {
   shops: Shop[];
 };
