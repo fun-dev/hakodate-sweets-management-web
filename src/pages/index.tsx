@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import { AppDrawer } from 'src/components/Header';
 import { SweetsTable } from 'src/components/SweetsTable';
 
-const ShopsPage: NextPage = ({}) => {
+const SweetsPage: NextPage = ({}) => {
   return (
     <>
       <Head>
@@ -19,4 +19,4 @@ const ShopsPage: NextPage = ({}) => {
   );
 };
 
-export default ShopsPage;
+export default SweetsPage;
