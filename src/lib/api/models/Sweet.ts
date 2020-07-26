@@ -1,3 +1,5 @@
+import { SmallCategory } from './SmallCategory';
+
 export type Sweet = {
   id: number;
   shop_id: number;
@@ -5,9 +7,9 @@ export type Sweet = {
   price: string;
   description: string;
   imagePath: string;
-  large_category_id: number;
-  small_category_ids: number[];
+  small_categories: SmallCategory[];
   created_at: string;
   updated_at: string;
   from_rdf: boolean;
+  favorite: number;
 };
