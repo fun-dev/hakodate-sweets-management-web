@@ -14,5 +14,5 @@ GitHub Flowでブランチを運用する．
 ## ブランチ名
 以下のルールに従ってブランチを作成すること
 
-- `#{Issue番号}_説明(kebab-case)`
-- 例：`#1_good-first-issue`
+- `{Issue番号}_説明(kebab-case)`
+- 例：`1_good-first-issue`
