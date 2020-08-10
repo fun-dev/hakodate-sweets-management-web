@@ -6,6 +6,7 @@ import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { GlobalStyle } from 'src/styles/global';
 import { theme } from 'src/styles/theme';
+import { AppDrawer } from 'src/components/Header';
 
 const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   useEffect(() => {
@@ -19,14 +20,17 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <title>あまはこAdmin</title>
+        <title>函館スイーツデータ管理</title>
+        <link rel="icon" href="/favicon.ico" />
       </Head>
       <StylesProvider injectFirst>
         <StyledThemeProvider theme={theme}>
           <MaterialThemeProvider theme={theme}>
             <GlobalStyle />
             <CssBaseline />
-            <Component {...pageProps} />
+            <AppDrawer title="函館スイーツデータ管理">
+              <Component {...pageProps} />
+            </AppDrawer>
           </MaterialThemeProvider>
         </StyledThemeProvider>
       </StylesProvider>

@@ -1,30 +1,22 @@
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
-import { Shop } from 'src/lib/api/models/Shop';
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar, Box } from '@material-ui/core';
 import Link from 'next/link';
-import styled from 'styled-components';
+import { useShops } from 'src/lib/api/requests/useShops';
 
-type Props = {
-  shops: Shop[];
-};
+export const ShopList: React.FC = () => {
+  const { data } = useShops();
 
-export const ShopList: React.FC<Props> = ({ shops }) => {
   return (
-    <StyledList>
-      {shops.map((shop) => (
-        <Link href={`shops/${shop.id}`}>
+    <List>
+      {data?.shops.map((shop) => (
+        <Link href="/shops/[id]" as={`/shops/${shop.id}`}>
           <ListItem button alignItems="center">
             <ListItemAvatar>
-              <Avatar src={shop.imagePath}></Avatar>
+              <Avatar src={shop.imagePath} />
             </ListItemAvatar>
             <ListItemText primary={shop.name} secondary="商品数：1" />
           </ListItem>
         </Link>
       ))}
-    </StyledList>
+    </List>
   );
 };
-
-const StyledList = styled(List)`
-  max-width: 600px;
-  margin: 0 auto;
-`;

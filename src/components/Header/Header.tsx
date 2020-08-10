@@ -11,15 +11,8 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Menu,
-  Cake,
-  Shop,
-  PinDrop,
-  QuestionAnswer,
-} from '@material-ui/icons';
+import { ChevronLeft, ChevronRight, Menu, Cake, Shop, PinDrop, QuestionAnswer } from '@material-ui/icons';
+import Link from 'next/link';
 
 const drawerWidth = 240;
 
@@ -148,24 +141,30 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
         </div>
         <Divider />
         <List>
-          <ListItem button>
-            <ListItemIcon>
-              <Cake />
-            </ListItemIcon>
-            <ListItemText primary="商品" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <Shop />
-            </ListItemIcon>
-            <ListItemText primary="店舗" />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <PinDrop />
-            </ListItemIcon>
-            <ListItemText primary="クーポン" />
-          </ListItem>
+          <Link href="/">
+            <ListItem button>
+              <ListItemIcon>
+                <Cake />
+              </ListItemIcon>
+              <ListItemText primary="商品" />
+            </ListItem>
+          </Link>
+          <Link href="/shops">
+            <ListItem button>
+              <ListItemIcon>
+                <Shop />
+              </ListItemIcon>
+              <ListItemText primary="店舗" />
+            </ListItem>
+          </Link>
+          <Link href="/coupons">
+            <ListItem button>
+              <ListItemIcon>
+                <PinDrop />
+              </ListItemIcon>
+              <ListItemText primary="クーポン" />
+            </ListItem>
+          </Link>
         </List>
         <Divider />
         <List>
