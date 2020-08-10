@@ -1,6 +1,8 @@
 import { Column } from 'material-table';
 import { Sweet } from 'src/lib/api/models/Sweet';
+import { Shop } from 'src/lib/api/models/Shop';
 import { Box } from '@material-ui/core';
+import { ShopNameColumn } from '../ShopNameColumn';
 
 export const columns: Array<Column<Sweet>> = [
   {
@@ -46,5 +48,12 @@ export const columns: Array<Column<Sweet>> = [
         ))}
       </Box>
     ),
+  },
+  {
+    title: '店舗名',
+    field: 'shop',
+    align: 'left',
+    editable: 'onUpdate',
+    render: (sweet) => <ShopNameColumn shopId={sweet.shop_id} />,
   },
 ];
