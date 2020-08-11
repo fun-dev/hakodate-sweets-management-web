@@ -18,7 +18,7 @@ $ yarn dev
 
 - [ブランチ運用](docs/git_github/BRANCH.md)
 - [コミットプレフィックス](docs/git_github/COMMIT_PREFIX.md)
-- [:construction:コミットルール](docs/git_github/COMMIT_RULES.md)
+- [git/GitHub を使用した開発の流れ](docs/git_github/DEVELOPMENT_FLOW.md)
 
 ### 使用技術
 
