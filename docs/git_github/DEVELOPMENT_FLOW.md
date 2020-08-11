@@ -103,6 +103,6 @@ GitHub のコメントでレビュー担当者に修正した旨を伝える
 ![再レビューボタン](./images/re_request_review.png)
 
 ## 8. master にマージする
-
+- ReviewerがPRをApproveしてマージする。再度修正が必要な場合は、Approveするまで7の工程を繰り返す。
 - master ブランチとコンフリクトしている場合は`git rebase`して解決する
 - わからない場合は分かる人に助けてもらう
