@@ -2,11 +2,8 @@ import { Column } from 'material-table';
 import { Sweet } from 'src/lib/api/models/Sweet';
 import { Shop } from 'src/lib/api/models/Shop';
 import { Box } from '@material-ui/core';
-<<<<<<< HEAD
 import { SweetNameColumn } from './Columns/SweetNameColumn';
-=======
 import { ShopNameColumn } from '../ShopNameColumn';
->>>>>>> master
 
 export const columns: Array<Column<Sweet>> = [
   {
