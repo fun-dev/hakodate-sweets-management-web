@@ -1,4 +1,4 @@
-<mxfile host="6d126884-dfe8-42dd-ba80-ad17990825f1" modified="2020-08-11T08:02:41.297Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="qeKx5rzqT1jKClFWuKaz" version="13.1.3" pages="2">
+<mxfile host="6d126884-dfe8-42dd-ba80-ad17990825f1" modified="2020-08-11T08:20:26.562Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_6) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.47.3 Chrome/78.0.3904.130 Electron/7.3.2 Safari/537.36" etag="_BekdKTC52YvT80ACDkW" version="13.1.3" pages="3">
     <diagram name="スイーツ編集画面" id="7ou7iCy_GI8r2No0mmDw">
         <mxGraphModel dx="1238" dy="855" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
             <root>
@@ -327,6 +327,64 @@
                 </mxCell>
                 <mxCell id="hensLc1bAhoPQDBATono-153" value="/shops/[id]/edit/name" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="CVZdTBidd2iVrSm22H8x-1">
                     <mxGeometry x="38" y="512" width="40" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+    <diagram id="q4j1f8os1Ixv7EbLDvpm" name="タブ">
+        <mxGraphModel dx="1238" dy="855" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="AxWPDC59njrDAcUGutip-0"/>
+                <mxCell id="AxWPDC59njrDAcUGutip-1" parent="AxWPDC59njrDAcUGutip-0"/>
+                <mxCell id="AxWPDC59njrDAcUGutip-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="AxWPDC59njrDAcUGutip-1" source="AxWPDC59njrDAcUGutip-2">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="370" y="370" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="140" y="160" width="180" height="420" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-3" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;管理者&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="150" y="180" width="50" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-7" value="&lt;font style=&quot;font-size: 18px&quot;&gt;商品&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="220" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-8" value="&lt;font style=&quot;font-size: 18px&quot;&gt;店舗&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="260" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-9" value="&lt;font style=&quot;font-size: 18px&quot;&gt;クーポン&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="300" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-10" value="" style="endArrow=none;html=1;entryX=1.017;entryY=0.095;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="138.47" y="330.1" as="sourcePoint"/>
+                        <mxPoint x="321.53" y="330.0000000000001" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-11" value="&lt;font style=&quot;font-size: 14px&quot;&gt;&lt;b&gt;函館柳屋&lt;/b&gt;&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="150" y="350" width="60" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-12" value="&lt;font style=&quot;font-size: 18px&quot;&gt;取扱商品&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="380" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-13" value="&lt;font style=&quot;font-size: 18px&quot;&gt;店舗情報&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="420" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-14" value="&lt;font style=&quot;font-size: 18px&quot;&gt;クーポン&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="180" y="460" width="80" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-15" value="" style="endArrow=none;html=1;entryX=1.017;entryY=0.095;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="136.94000000000003" y="490.0999999999999" as="sourcePoint"/>
+                        <mxPoint x="320" y="490" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-16" value="&lt;font style=&quot;font-size: 18px&quot;&gt;本アプリについて&lt;/font&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="160" y="520" width="150" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="AxWPDC59njrDAcUGutip-18" value="/shops/[id] 以降のページで出す" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="AxWPDC59njrDAcUGutip-1">
+                    <mxGeometry x="380" y="360" width="180" height="20" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
