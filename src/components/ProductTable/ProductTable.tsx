@@ -34,10 +34,17 @@ export const ProductTable: React.FC = () => {
           }}
           localization={{
             pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
+              labelDisplayedRows: '{from}-{to}件 / {count}件',
+              labelRowsSelect: '行',
+              firstTooltip: '最初のページ',
+              previousTooltip: '前のページ',
+              nextTooltip: '次のページ',
+              lastTooltip: '最後のページ',
             },
             toolbar: {
               nRowsSelected: '{0} row(s) selected',
+              searchTooltip: '検索',
+              searchPlaceholder: '検索',
             },
             header: {
               actions: <Box minWidth={120}>操作</Box>,
