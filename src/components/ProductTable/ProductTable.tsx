@@ -12,7 +12,7 @@ const tableContainerHeight = `calc(100vh - ${appHeaderHeight}px - ${padding * 2}
 const tableHeaderHeight = 121;
 const tableBodyHeight = `calc(100vh - ${appHeaderHeight}px - ${padding * 2}px - ${tableHeaderHeight}px)`;
 
-export const SweetsTable: React.FC = () => {
+export const ProductTable: React.FC = () => {
   const { data } = useSweets();
 
   return (

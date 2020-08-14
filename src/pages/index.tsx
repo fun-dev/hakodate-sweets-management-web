@@ -1,12 +1,12 @@
 import { NextPage } from 'next';
-import { SweetsTable } from 'src/components/SweetsTable';
+import { ProductTable } from 'src/components/ProductTable';
 
-const SweetsPage: NextPage = ({}) => {
+const ProductsPage: NextPage = () => {
   return (
     <>
-      <SweetsTable />
+      <ProductTable />
     </>
   );
 };
 
-export default SweetsPage;
+export default ProductsPage;

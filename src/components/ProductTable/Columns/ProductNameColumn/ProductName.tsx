@@ -5,7 +5,7 @@ type Props = {
   sweet: Sweet;
 };
 
-export const SweetNameColumn: React.FC<Props> = ({ sweet }) => (
+export const ProductName: React.FC<Props> = ({ sweet }) => (
   <Box display="flex" alignItems="center">
     <Box marginRight={2} clone>
       <Avatar src={sweet.imagePath} />
