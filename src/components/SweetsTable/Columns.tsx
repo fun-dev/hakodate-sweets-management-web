@@ -51,7 +51,7 @@ export const columns: Array<Column<Sweet>> = [
     ),
   },
   {
-    title: '店舗名',
+    title: '販売店舗',
     field: 'shop',
     align: 'left',
     editable: 'onUpdate',
