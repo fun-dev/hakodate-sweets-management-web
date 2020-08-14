@@ -1,8 +1,9 @@
 import { SmallCategory } from './SmallCategory';
+import { Shop } from './Shop';
 
 export type Sweet = {
   id: number;
-  shop_id: number;
+  shop: Shop;
   name: string;
   price: string;
   description: string;
