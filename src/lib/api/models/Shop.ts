@@ -17,4 +17,5 @@ export type Shop = {
   telephone: string;
   created_at: string;
   updated_at: string;
+  property_number: number;
 };

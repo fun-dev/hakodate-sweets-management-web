@@ -1,6 +1,5 @@
 import { Column } from 'material-table';
 import { Sweet } from 'src/lib/api/models/Sweet';
-import { Shop } from 'src/lib/api/models/Shop';
 import { Box } from '@material-ui/core';
 import { SweetNameColumn } from './Columns/SweetNameColumn';
 import { ShopNameColumn } from '../ShopNameColumn';
@@ -52,10 +51,10 @@ export const columns: Array<Column<Sweet>> = [
     ),
   },
   {
-    title: '店舗名',
+    title: '販売店舗',
     field: 'shop',
     align: 'left',
     editable: 'onUpdate',
-    render: (sweet) => <ShopNameColumn shopId={sweet.shop_id} />,
+    render: (sweet) => <ShopNameColumn shop={sweet.shop} />,
   },
 ];
