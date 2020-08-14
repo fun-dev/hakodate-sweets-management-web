@@ -1,12 +1,11 @@
 import React from 'react';
-import { useShop } from 'src/lib/api/requests/useShop';
 import { Box } from '@material-ui/core';
+import { Shop } from 'src/lib/api/models/Shop';
 
 type Props = {
-  shopId: number;
+  shop: Shop;
 };
 
-export const ShopNameColumn: React.FC<Props> = ({ shopId }) => {
-  const { data } = useShop({ id: shopId });
-  return <Box>{data?.shops.name}</Box>;
+export const ShopNameColumn: React.FC<Props> = ({ shop }) => {
+  return <Box>{shop.name}</Box>;
 };
