@@ -77,20 +77,21 @@ export const theme = createMuiTheme({
 
 以下に動作を確認できるサンプルを作成したので、上記の説明で理解できない場合は見て下さい。
 
-https://codesandbox.io/s/material-ui-box-styled-1co9i
+- コードあり: https://codesandbox.io/s/material-ui-box-styled-1co9i
+- コードなし: https://1co9i.csb.app/
 
 ## なぜ `<Box />`でスタイリングするのか
 
-Material-UI には`makeStyles`を使った CSS の記述が一般的だが、 `<Box />`を使うのは以下の理由があるためである。
+Material-UI には`makeStyles`を使った CSS の記述([参考](https://github.com/mui-org/material-ui/blob/master/docs/src/pages/components/app-bar/ButtonAppBar.tsx))が一般的だが、 `<Box />`を使うのは以下の理由があるためである。
 
 ### 1. CSS のクラス名を指定する必要がない
 
-後述の通り、`<Box />`は CSS のクラスを意識する必要がないため、若干楽に CSS を書くことができる。
+前述の通り、`<Box />`は CSS のクラスを意識する必要がないため、若干楽に CSS を書くことができる。
 `makeStyles`を使用する場合、スタイルに対応したクラス名を自分で定義する必要があるため、余計な負担が発生する。
 
 ### 2. スタイルが把握しやすい
 
-後述の通り、`<Box />`は修飾するコンポーネントの近くにスタイルが記述されるため、スタイルを把握しやすい。
+前述の通り、`<Box />`は修飾するコンポーネントの近くにスタイルが記述されるため、スタイルを把握しやすい。
 
 ### 3. より少ない記述でスタイリングできる
 
