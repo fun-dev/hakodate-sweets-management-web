@@ -22,6 +22,7 @@ $ yarn dev
 
 ### 使用技術
 
+- [スタイリング](docs/technology_used/STYLING.md)
 - [:construction:Next.js](docs/technology_used/NEXT_JS.md)
 - [:construction:ディレクトリ構成](docs/technology_used/DIRECTORY.md)
 - [:construction:状態管理](docs/technology_used/STATE_MANAGEMENT.md)
