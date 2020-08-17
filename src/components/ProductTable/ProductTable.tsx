@@ -5,6 +5,7 @@ import { useSweets } from 'src/lib/api/requests/useSweets';
 import { columns } from './Columns';
 import { tableIcons } from './TableIcons';
 import { theme } from 'src/styles/theme';
+import { localization } from './Localization';
 
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
@@ -32,23 +33,7 @@ export const ProductTable: React.FC = () => {
             maxBodyHeight: tableBodyHeight,
             minBodyHeight: tableBodyHeight,
           }}
-          localization={{
-            pagination: {
-              labelDisplayedRows: '{from}-{to} of {count}',
-            },
-            toolbar: {
-              nRowsSelected: '{0} row(s) selected',
-            },
-            header: {
-              actions: <Box minWidth={120}>操作</Box>,
-            },
-            body: {
-              emptyDataSourceMessage: 'No records to display',
-              filterRow: {
-                filterTooltip: 'Filter',
-              },
-            },
-          }}
+          localization={localization}
           editable={{
             onRowUpdate: (newData, oldData) =>
               new Promise((resolve, reject) => {
