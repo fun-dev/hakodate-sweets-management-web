@@ -6,6 +6,7 @@ import { columns } from './Columns';
 import { tableIcons } from './TableIcons';
 import { theme } from 'src/styles/theme';
 import { localization } from './Localization';
+import { AddBox } from '@material-ui/icons';
 
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
@@ -24,6 +25,16 @@ export const ProductTable: React.FC = () => {
           columns={columns}
           data={data?.sweets ?? []}
           icons={tableIcons}
+          actions={[
+            {
+              icon: () => <AddBox />,
+              isFreeAction: true,
+              position: 'toolbar',
+              onClick: () => {
+                alert('add!'); // TODO: これは消す。ここでdialogの表示・非表示を切り替える。
+              },
+            },
+          ]}
           components={{}}
           options={{
             headerStyle: {
