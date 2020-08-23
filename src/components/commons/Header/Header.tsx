@@ -73,9 +73,14 @@ const useStyles = makeStyles((theme: Theme) =>
       // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
-    content: {
+    contentContainer: {
       flexGrow: 1,
       padding: theme.spacing(3),
+      height: '100vh',
+    },
+    content: {
+      width: '100%',
+      height: `calc(100vh - ${theme.spacing(3) * 2}px - 64px)`,
     },
   })
 );
@@ -95,7 +100,7 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  console.log(theme.mixins.toolbar);
   return (
     <div className={classes.root}>
       <AppBar
@@ -176,9 +181,9 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
           </ListItem>
         </List>
       </Drawer>
-      <main className={classes.content}>
+      <main className={classes.contentContainer}>
         <div className={classes.toolbar} />
-        {children}
+        <div className={classes.content}>{children}</div>
       </main>
     </div>
   );
