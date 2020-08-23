@@ -1,9 +1,10 @@
 import { NextPage } from 'next';
+import { Coupons } from 'src/components/partials/Coupons';
 
-const CouponsPage: NextPage = ({}) => {
+const CouponsPage: NextPage = () => {
   return (
     <>
-      <div>クーポンページ</div>
+      <Coupons />
     </>
   );
 };

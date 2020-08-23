@@ -1,10 +1,10 @@
 import { NextPage } from 'next';
-import { ProductTable } from 'src/components/ProductTable';
+import { Products } from 'src/components/partials/Products';
 
 const ProductsPage: NextPage = () => {
   return (
     <>
-      <ProductTable />
+      <Products />
     </>
   );
 };
