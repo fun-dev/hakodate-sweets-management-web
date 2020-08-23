@@ -1,13 +1,10 @@
 import { NextPage } from 'next';
-import { ShopList } from 'src/components/ShopList';
-import { useShops } from 'src/lib/api/requests/useShops';
+import { Shops } from 'src/components/partials/Shops';
 
-const ShopsPage: NextPage = ({}) => {
-  return (
-    <>
-      <ShopList />
-    </>
-  );
-};
+const ShopsPage: NextPage = () => (
+  <>
+    <Shops />
+  </>
+);
 
 export default ShopsPage;

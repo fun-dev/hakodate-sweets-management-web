@@ -1,4 +1,4 @@
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar, Box } from '@material-ui/core';
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar } from '@material-ui/core';
 import Link from 'next/link';
 import { useShops } from 'src/lib/api/requests/useShops';
 
