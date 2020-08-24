@@ -6,7 +6,7 @@ export type GetShopParams = {
 };
 
 type GetShopResponse = {
-  shops: Shop;
+  shop: Shop;
 };
 
 export function useShop({ id }: GetShopParams) {

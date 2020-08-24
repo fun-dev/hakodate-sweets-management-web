@@ -3,15 +3,23 @@ import { ShopDetail } from 'src/components/partials/ShopDetail';
 import nookies from 'nookies';
 import { verifyIdToken } from 'src/lib/firebase/admin';
 
-const ShopDetailPage: NextPage = ({}) => {
+type Props = {
+  id: number;
+};
+
+type QueryParams = {
+  id: string;
+};
+
+const ShopDetailPage: NextPage<Props> = ({ id }) => {
   return (
     <>
-      <ShopDetail />
+      <ShopDetail shopId={id} />
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps<Props, QueryParams> = async (context) => {
   const cookies = nookies.get(context);
   const { verified } = await verifyIdToken(cookies.token);
 
@@ -20,7 +28,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     context.res.end();
   }
 
-  return { props: {} };
+  return {
+    props: {
+      id: parseInt(context.params.id),
+    },
+  };
 };
 
 export default ShopDetailPage;
