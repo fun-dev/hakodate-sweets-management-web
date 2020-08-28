@@ -3,8 +3,9 @@ import * as Layout from './Layout';
 import { ShopInformation } from './ShopInformation';
 import { ShopProducts } from './ShopProducts';
 import { ShopCoupons } from './ShopCoupons';
-import { Typography, Box } from '@material-ui/core';
+import { Typography, Box, Link, ListItem, ListItemIcon } from '@material-ui/core';
 import { useShop } from 'src/lib/api/requests/useShop';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 type Props = {
   shopId: number;
@@ -14,13 +15,21 @@ export const ShopDetail: React.FC<Props> = ({ shopId }) => {
   const { data } = useShop({ id: shopId });
 
   return (
-    <>
-      <div>{data?.shop.name}</div>
+    <Box>
+      <Box display="flex" margin={3}>
+        <Link href="/shops">
+          <ListItem button>
+            <ListItemIcon>
+              <ArrowBackIcon fontSize="default" />
+            </ListItemIcon>
+          </ListItem>
+        </Link>
+        <Box fontSize="h4.fontSize">{data?.shop.name}</Box>
+      </Box>
       <Layout.Wrapper>
         <Layout.LeftItem>
-          <ShopInformation />
+          <ShopInformation shopId={shopId} />
         </Layout.LeftItem>
-
         <Layout.RightContainer>
           <Layout.TopRightItem>
             <ShopProducts />
@@ -31,6 +40,6 @@ export const ShopDetail: React.FC<Props> = ({ shopId }) => {
           </Layout.BottomRightItem>
         </Layout.RightContainer>
       </Layout.Wrapper>
-    </>
+    </Box>
   );
 };
