@@ -7,8 +7,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { GlobalStyle } from 'src/styles/global';
 import { theme } from 'src/styles/theme';
 import { AppDrawer } from 'src/components/commons/Header';
+import { AuthProvider } from 'src/components/commons/Auth';
 
-const App: React.FC<AppProps> = ({ Component, pageProps }) => {
+const withOutAppDrawerPathnames = ['/login'];
+
+const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
   useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector('#jss-server-side');
@@ -16,6 +19,8 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }, []);
+
+  const withOutAppDrawer = withOutAppDrawerPathnames.includes(router.pathname);
 
   return (
     <>
@@ -28,9 +33,15 @@ const App: React.FC<AppProps> = ({ Component, pageProps }) => {
           <MaterialThemeProvider theme={theme}>
             <GlobalStyle />
             <CssBaseline />
-            <AppDrawer title="函館スイーツデータ管理">
-              <Component {...pageProps} />
-            </AppDrawer>
+            <AuthProvider>
+              {withOutAppDrawer ? (
+                <Component {...pageProps} />
+              ) : (
+                <AppDrawer title="函館スイーツデータ管理">
+                  <Component {...pageProps} />
+                </AppDrawer>
+              )}
+            </AuthProvider>
           </MaterialThemeProvider>
         </StyledThemeProvider>
       </StylesProvider>
