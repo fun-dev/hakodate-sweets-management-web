@@ -1,12 +1,11 @@
 import * as firebaseAdmin from 'firebase-admin';
-import serviceAccount from './serviceAccountKey.json';
 
 if (!firebaseAdmin.apps.length) {
   firebaseAdmin.initializeApp({
     credential: firebaseAdmin.credential.cert({
-      privateKey: serviceAccount.private_key,
-      clientEmail: serviceAccount.client_email,
-      projectId: serviceAccount.project_id,
+      privateKey: process.env.SERVICE_ACCOUNT_PRIVATE_KEY.replace(/\\n/g, '\n'),
+      clientEmail: process.env.SERVICE_ACCOUNT_CLIENT_EMAIL,
+      projectId: process.env.SERVICE_ACCOUNT_PROJECT_ID,
     }),
     databaseURL: 'https://hakodate-sweets.firebaseio.com',
   });
