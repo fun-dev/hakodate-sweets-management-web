@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { ListItemIcon } from '@material-ui/core';
+import { ListItemIcon, Menu, MenuItem } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -11,8 +11,20 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { ChevronLeft, ChevronRight, Menu, Cake, Shop, PinDrop, QuestionAnswer } from '@material-ui/icons';
+import {
+  ChevronLeft,
+  ChevronRight,
+  Menu as MenuIcon,
+  Cake,
+  Shop,
+  PinDrop,
+  QuestionAnswer,
+  AccountCircle,
+  ExitToApp,
+  Person,
+} from '@material-ui/icons';
 import Link from 'next/link';
+import { useAuthContext } from '../Auth';
 
 const drawerWidth = 240;
 
@@ -82,16 +94,23 @@ const useStyles = makeStyles((theme: Theme) =>
       width: '100%',
       height: `calc(100vh - ${theme.spacing(3) * 2}px - 64px)`,
     },
+    title: {
+      flexGrow: 1,
+    },
   })
 );
 
 type Props = {
   title: string;
 };
+
 export const AppDrawer: React.FC<Props> = ({ title, children }) => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [accountMenuAnchorEl, setAccountMenuAnchorEl] = useState<HTMLElement | null>(null);
+  const openAccountMenu = !!accountMenuAnchorEl;
+  const { operator, logout } = useAuthContext();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,7 +119,20 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  console.log(theme.mixins.toolbar);
+
+  const handleAccountMenuOpen = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    setAccountMenuAnchorEl(e.currentTarget);
+  };
+
+  const handleAccountMenuClose = () => {
+    setAccountMenuAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    setAccountMenuAnchorEl(null);
+    logout();
+  };
+
   return (
     <div className={classes.root}>
       <AppBar
@@ -119,11 +151,55 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
               [classes.hide]: open,
             })}
           >
-            <Menu />
+            <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
+          <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
+          <div>
+            <IconButton
+              aria-label="アカウント情報"
+              aria-controls="menu-app-bar"
+              aria-haspopup="true"
+              onClick={handleAccountMenuOpen}
+              color="inherit"
+            >
+              <AccountCircle />
+            </IconButton>
+            <Menu
+              id="menu-app-bar"
+              keepMounted
+              disableAutoFocusItem
+              anchorEl={accountMenuAnchorEl}
+              getContentAnchorEl={null}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center',
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'center',
+              }}
+              open={openAccountMenu}
+              onClose={handleAccountMenuClose}
+            >
+              {operator?.email && (
+                <MenuItem button={false}>
+                  <ListItemIcon>
+                    <Person fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText primary={operator.email} />
+                </MenuItem>
+              )}
+              {operator?.displayName && <MenuItem button={false}>{operator?.displayName}</MenuItem>}
+              <MenuItem onClick={handleLogout}>
+                <ListItemIcon>
+                  <ExitToApp fontSize="small" />
+                </ListItemIcon>
+                <ListItemText primary="ログアウト" />
+              </MenuItem>
+            </Menu>
+          </div>
         </Toolbar>
       </AppBar>
       <Drawer
