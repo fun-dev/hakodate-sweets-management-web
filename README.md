@@ -13,6 +13,7 @@ $ yarn dev
 
 - [Node.js](docs/development_environment/NODE_JS.md)
 - [VSCode](docs/development_environment/VSCODE.md)
+- [環境設定](docs/development_environment/ENVIRONMENT_SETTINGS.md)
 
 ### Git/GitHub
 
