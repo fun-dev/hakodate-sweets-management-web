@@ -8,6 +8,7 @@ import {
   OutlinedInput,
   InputAdornment,
   IconButton,
+  CircularProgress,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styled from 'styled-components';
@@ -32,7 +33,7 @@ export const Login: React.FC = () => {
     setVisiblePassword((visible) => !visible);
   };
   const [showLoginErrorAlert, setShowLoginErrorAlert] = useState(false);
-  const [disabledLoginButton, setDisabledLoginButton] = useState(false);
+  const [loadingLoginResult, setLoadingLoginResult] = useState(false);
 
   return (
     <Container>
@@ -41,12 +42,12 @@ export const Login: React.FC = () => {
           <Formik
             initialValues={{ email: '', password: '' }}
             onSubmit={async (values) => {
-              setDisabledLoginButton(true);
+              setLoadingLoginResult(true);
               const succeeded = await login(values.email, values.password);
               if (!succeeded) {
                 setShowLoginErrorAlert(true);
+                setLoadingLoginResult(false);
               }
-              setDisabledLoginButton(false);
             }}
           >
             {({ values, handleChange, handleSubmit }) => (
@@ -86,9 +87,15 @@ export const Login: React.FC = () => {
                       <Alert severity="error">メールアドレスまたはパスワードが正しくありません。</Alert>
                     </Box>
                   )}
-                  <Box margin={1} clone>
-                    <Button variant="contained" color="primary" type="submit" disabled={disabledLoginButton}>
-                      ログイン
+                  <Box margin={1} minHeight={36} clone>
+                    <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
+                      {!loadingLoginResult ? (
+                        'ログイン'
+                      ) : (
+                        <Box position="absolute" top="50%" left="50%" marginTop={-1.5} marginLeft={-1.5}>
+                          <CircularProgress size={24} />
+                        </Box>
+                      )}
                     </Button>
                   </Box>
                 </form>
