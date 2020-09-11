@@ -27,6 +27,8 @@ export default function useRequest<Data = unknown, Error = unknown>(
     () => axios(request),
     {
       ...config,
+      shouldRetryOnError: false,
+      refreshWhenHidden: false,
       initialData: initialData && {
         status: 200,
         statusText: 'InitialData',
