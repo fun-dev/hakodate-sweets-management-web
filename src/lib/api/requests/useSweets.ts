@@ -6,13 +6,12 @@ type GetSweetsResponse = {
 };
 
 export function useSweets() {
-  const { data, response, error, isValidating, revalidate, mutate } = useRequest<GetSweetsResponse, Error>({
+  const { data, error, isValidating, revalidate, mutate } = useRequest<GetSweetsResponse, Error>({
     url: '/sweets',
   });
 
   return {
     data,
-    response,
     error,
     isValidating,
     revalidate,

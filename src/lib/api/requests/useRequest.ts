@@ -1,20 +1,16 @@
 import useSWR, { ConfigInterface, responseInterface } from 'swr';
-import { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
+import { AxiosRequestConfig, AxiosError } from 'axios';
 import axios from '../axios';
 
 export type GetRequest = AxiosRequestConfig | null;
 
 interface Return<Data, Error>
-  extends Pick<
-    responseInterface<AxiosResponse<Data>, AxiosError<Error>>,
-    'isValidating' | 'revalidate' | 'error' | 'mutate'
-  > {
+  extends Pick<responseInterface<Data, AxiosError<Error>>, 'isValidating' | 'revalidate' | 'error' | 'mutate'> {
   data: Data | undefined;
-  response: AxiosResponse<Data> | undefined;
 }
 
 export interface Config<Data = unknown, Error = unknown>
-  extends Omit<ConfigInterface<AxiosResponse<Data>, AxiosError<Error>>, 'initialData'> {
+  extends Omit<ConfigInterface<Data, AxiosError<Error>>, 'initialData'> {
   initialData?: Data;
 }
 
@@ -22,26 +18,21 @@ export default function useRequest<Data = unknown, Error = unknown>(
   request: GetRequest,
   { initialData, ...config }: Config<Data, Error> = {}
 ): Return<Data, Error> {
-  const { data: response, error, isValidating, revalidate, mutate } = useSWR<AxiosResponse<Data>, AxiosError<Error>>(
-    request && JSON.stringify(request),
-    () => axios(request),
+  const { data, error, isValidating, revalidate, mutate } = useSWR<Data, AxiosError<Error>>(
+    request.url,
+    async () => await (await axios(request)).data,
     {
       ...config,
-      shouldRetryOnError: false,
       refreshWhenHidden: false,
-      initialData: initialData && {
-        status: 200,
-        statusText: 'InitialData',
-        config: request,
-        headers: {},
-        data: initialData,
-      },
+      revalidateOnFocus: false,
+      revalidateOnReconnect: true,
+      errorRetryCount: 2,
+      initialData,
     }
   );
-
+  console.log('request.url', request.url);
   return {
-    data: response?.data,
-    response,
+    data,
     error,
     isValidating,
     revalidate,

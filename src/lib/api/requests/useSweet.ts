@@ -10,7 +10,7 @@ type GetSweetResponse = {
 };
 
 export function useSweet({ id }: GetSweetParams) {
-  const { data, response, error, isValidating, revalidate, mutate } = useRequest<GetSweetResponse, Error>({
+  const { data, error, isValidating, revalidate, mutate } = useRequest<GetSweetResponse, Error>({
     url: '/sweet',
     params: {
       id,
@@ -19,7 +19,6 @@ export function useSweet({ id }: GetSweetParams) {
 
   return {
     data,
-    response,
     error,
     isValidating,
     revalidate,
