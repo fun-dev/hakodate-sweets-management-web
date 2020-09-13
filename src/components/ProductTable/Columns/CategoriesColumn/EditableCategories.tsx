@@ -84,14 +84,14 @@ export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategori
         }}
       >
         <ListSubheader disableSticky>和菓子</ListSubheader>
-        {japaneseCategories.map((category) => (
+        {japaneseCategories?.map((category) => (
           <MenuItem key={`editable-category-menu-item-japanese-${category.id}`} onClick={handleMenuItemClick(category)}>
             <Checkbox checked={selectedCategories.findIndex((c) => c.id === category.id) > -1} />
             <ListItemText primary={category.name} />
           </MenuItem>
         ))}
         <ListSubheader disableSticky>洋菓子</ListSubheader>
-        {westernStyleCategories.map((category) => (
+        {westernStyleCategories?.map((category) => (
           <MenuItem
             key={`editable-category-menu-item-western-style-${category.id}`}
             onClick={handleMenuItemClick(category)}
@@ -101,7 +101,7 @@ export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategori
           </MenuItem>
         ))}
         <ListSubheader disableSticky>その他</ListSubheader>
-        {otherCategories.map((category) => (
+        {otherCategories?.map((category) => (
           <MenuItem key={`editable-category-menu-item-other-${category.id}`} onClick={handleMenuItemClick(category)}>
             <Checkbox checked={selectedCategories.findIndex((c) => c.id === category.id) > -1} />
             <ListItemText primary={category.name} />
