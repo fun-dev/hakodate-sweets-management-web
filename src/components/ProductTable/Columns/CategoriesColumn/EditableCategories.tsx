@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Sweet } from 'src/lib/api/models/Sweet';
 import {
@@ -26,24 +26,12 @@ type Props = {
 };
 
 export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategories }) => {
-  const { data } = useCategories();
+  const { classifiedCategories } = useCategories();
   const [selectedCategories, setSelectedCategories] = useState<SmallCategory[]>(sweet.small_categories);
 
   useEffect(() => {
     setSelectedCategories(sweet.small_categories);
   }, [setSelectedCategories, sweet.small_categories]);
-
-  const japaneseCategories = useMemo(
-    () => data?.small_categories.filter((category) => category.large_category_id === 1),
-    [data?.small_categories]
-  );
-  const westernStyleCategories = useMemo(
-    () => data?.small_categories.filter((category) => category.large_category_id === 2),
-    [data?.small_categories]
-  );
-  const otherCategories = useMemo(() => data?.small_categories.filter((category) => category.large_category_id === 3), [
-    data?.small_categories,
-  ]);
 
   const handleMenuItemClick = (selectedCategory: SmallCategory) => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     const index = selectedCategories.findIndex((category) => category.id === selectedCategory.id);
@@ -65,7 +53,7 @@ export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategori
         value={selectedCategories}
         input={<Input />}
         renderValue={(selected) => (
-          <Box display="flex" flexWrap="wrap">
+          <Box display="flex" flexWrap="wrap" height="100%">
             {(selected as SmallCategory[]).map((category) => (
               <Box key={`editable-category-selected-item-${category.id}`} margin={0.5} clone>
                 <Chip label={category.name} />
@@ -84,14 +72,14 @@ export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategori
         }}
       >
         <ListSubheader disableSticky>和菓子</ListSubheader>
-        {japaneseCategories?.map((category) => (
+        {classifiedCategories.japanese?.map((category) => (
           <MenuItem key={`editable-category-menu-item-japanese-${category.id}`} onClick={handleMenuItemClick(category)}>
             <Checkbox checked={selectedCategories.findIndex((c) => c.id === category.id) > -1} />
             <ListItemText primary={category.name} />
           </MenuItem>
         ))}
         <ListSubheader disableSticky>洋菓子</ListSubheader>
-        {westernStyleCategories?.map((category) => (
+        {classifiedCategories.western?.map((category) => (
           <MenuItem
             key={`editable-category-menu-item-western-style-${category.id}`}
             onClick={handleMenuItemClick(category)}
@@ -101,7 +89,7 @@ export const EditableCategories: React.FC<Props> = ({ sweet, changeDraftCategori
           </MenuItem>
         ))}
         <ListSubheader disableSticky>その他</ListSubheader>
-        {otherCategories?.map((category) => (
+        {classifiedCategories.other?.map((category) => (
           <MenuItem key={`editable-category-menu-item-other-${category.id}`} onClick={handleMenuItemClick(category)}>
             <Checkbox checked={selectedCategories.findIndex((c) => c.id === category.id) > -1} />
             <ListItemText primary={category.name} />
