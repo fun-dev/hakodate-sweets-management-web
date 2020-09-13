@@ -13,7 +13,7 @@ import {
   ListSubheader,
 } from '@material-ui/core';
 import { useCategories } from 'src/lib/api/requests/useCategories';
-import { SmallCategory } from 'src/lib/api/models/SmallCategory';
+import { SmallCategory } from 'src/lib/api/models/Category';
 
 const FormControl = styled(MaterialFormControl)`
   min-width: 200px;
