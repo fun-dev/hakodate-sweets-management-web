@@ -6,13 +6,12 @@ type GetShopsResponse = {
 };
 
 export function useShops() {
-  const { data, response, error, isValidating, revalidate, mutate } = useRequest<GetShopsResponse, Error>({
+  const { data, error, isValidating, revalidate, mutate } = useRequest<GetShopsResponse, Error>({
     url: '/shops',
   });
 
   return {
     data,
-    response,
     error,
     isValidating,
     revalidate,

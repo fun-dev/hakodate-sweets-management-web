@@ -15,7 +15,7 @@ export const localization: Localization = {
     searchPlaceholder: '検索',
   },
   header: {
-    actions: '操作',
+    actions: '編集',
   },
   body: {
     emptyDataSourceMessage: '表示可能な商品はありません。',

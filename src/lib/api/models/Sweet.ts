@@ -1,4 +1,4 @@
-import { SmallCategory } from './SmallCategory';
+import { SmallCategory } from './Category';
 import { Shop } from './Shop';
 
 export type Sweet = {

@@ -10,13 +10,12 @@ type GetShopResponse = {
 };
 
 export function useShop({ id }: GetShopParams) {
-  const { data, response, error, isValidating, revalidate, mutate } = useRequest<GetShopResponse, Error>({
+  const { data, error, isValidating, revalidate, mutate } = useRequest<GetShopResponse, Error>({
     url: `/shops/${id}`,
   });
 
   return {
     data,
-    response,
     error,
     isValidating,
     revalidate,
