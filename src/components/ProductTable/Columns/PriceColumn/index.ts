@@ -4,5 +4,7 @@ export const priceColumn: ProductTableColumn = {
   title: '価格',
   field: 'price',
   align: 'left',
-  editable: 'onUpdate',
+  editable: 'never',
+  width: '6rem',
+  sorting: false,
 };

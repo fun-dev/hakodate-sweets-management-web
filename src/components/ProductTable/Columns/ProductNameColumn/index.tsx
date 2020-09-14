@@ -7,4 +7,6 @@ export const productNameColumn: ProductTableColumn = {
   align: 'left',
   editable: 'never',
   render: (sweet) => <ProductName sweet={sweet} />,
+  width: '20rem',
+  sorting: false,
 };

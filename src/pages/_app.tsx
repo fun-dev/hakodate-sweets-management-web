@@ -8,6 +8,7 @@ import { GlobalStyle } from 'src/styles/global';
 import { theme } from 'src/styles/theme';
 import { AppDrawer } from 'src/components/commons/Header';
 import { AuthProvider } from 'src/components/commons/Auth';
+import { SnackbarProvider } from 'notistack';
 
 const withOutAppDrawerPathnames = ['/login'];
 
@@ -31,17 +32,19 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
       <StylesProvider injectFirst>
         <StyledThemeProvider theme={theme}>
           <MaterialThemeProvider theme={theme}>
-            <GlobalStyle />
-            <CssBaseline />
-            <AuthProvider>
-              {withOutAppDrawer ? (
-                <Component {...pageProps} />
-              ) : (
-                <AppDrawer title="函館スイーツデータ管理">
+            <SnackbarProvider maxSnack={5}>
+              <GlobalStyle />
+              <CssBaseline />
+              <AuthProvider>
+                {withOutAppDrawer ? (
                   <Component {...pageProps} />
-                </AppDrawer>
-              )}
-            </AuthProvider>
+                ) : (
+                  <AppDrawer title="函館スイーツデータ管理">
+                    <Component {...pageProps} />
+                  </AppDrawer>
+                )}
+              </AuthProvider>
+            </SnackbarProvider>
           </MaterialThemeProvider>
         </StyledThemeProvider>
       </StylesProvider>

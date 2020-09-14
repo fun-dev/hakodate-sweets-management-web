@@ -5,4 +5,5 @@ export const descriptionColumn: ProductTableColumn = {
   field: 'description',
   align: 'left',
   editable: 'never',
+  sorting: false,
 };

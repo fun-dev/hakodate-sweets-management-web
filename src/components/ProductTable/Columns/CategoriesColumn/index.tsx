@@ -11,6 +11,8 @@ export const categoriesColumn: ProductTableColumn = {
   editComponent: ({ rowData: sweet, onChange }) => (
     <EditableCategories sweet={sweet} changeDraftCategories={onChange} />
   ),
+  width: 300,
+  sorting: false,
 };
 
 // editComponentのprops.onChangeを実行すると，引数で渡したnewValueがsweet.small_categories(field)に代入される
