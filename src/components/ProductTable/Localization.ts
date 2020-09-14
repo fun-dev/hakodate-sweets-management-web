@@ -3,7 +3,7 @@ import { Localization } from 'material-table';
 export const localization: Localization = {
   pagination: {
     labelDisplayedRows: '{from}-{to}件 / {count}件',
-    labelRowsSelect: '行',
+    labelRowsSelect: '件/ページ',
     firstTooltip: '最初のページ',
     previousTooltip: '前のページ',
     nextTooltip: '次のページ',
