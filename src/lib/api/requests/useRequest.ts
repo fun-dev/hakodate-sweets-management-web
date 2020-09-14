@@ -30,7 +30,7 @@ export default function useRequest<Data = unknown, Error = unknown>(
       initialData,
     }
   );
-  console.log('request.url', request.url);
+
   return {
     data,
     error,
