@@ -28,6 +28,7 @@ export const ProductTable: React.FC = () => {
           columns={columns}
           data={data?.sweets ?? []}
           icons={tableIcons}
+          isLoading={!data}
           actions={[
             {
               icon: () => <AddBox />,
