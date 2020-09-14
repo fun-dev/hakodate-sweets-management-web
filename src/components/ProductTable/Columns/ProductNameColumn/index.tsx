@@ -8,4 +8,5 @@ export const productNameColumn: ProductTableColumn = {
   editable: 'never',
   render: (sweet) => <ProductName sweet={sweet} />,
   width: '20rem',
+  sorting: false,
 };

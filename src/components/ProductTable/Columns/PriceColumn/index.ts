@@ -6,4 +6,5 @@ export const priceColumn: ProductTableColumn = {
   align: 'left',
   editable: 'never',
   width: '6rem',
+  sorting: false,
 };
