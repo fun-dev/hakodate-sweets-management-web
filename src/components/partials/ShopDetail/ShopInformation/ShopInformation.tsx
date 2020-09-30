@@ -1,17 +1,9 @@
-import {
-  Paper,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  ListItemSecondaryAction,
-  ListItemAvatar,
-  Divider,
-  Avatar,
-} from '@material-ui/core';
+import { Paper, Box, List, ListItem, ListItemText, ListItemSecondaryAction, Divider, Avatar } from '@material-ui/core';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
 import { ShopInformationColumn } from './ShopInformationColumn';
 import { useShop } from 'src/lib/api/requests/useShop';
+import { ListItemAvatar as MaterialListItemAvatar } from '@material-ui/core';
+import styled from 'styled-components';
 
 type Props = {
   shopId: number;
@@ -34,6 +26,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
+
+const ListItemAvatar = styled(MaterialListItemAvatar)``;
 
 export const ShopInformation: React.FC<Props> = ({ shopId }) => {
   const classes = useStyles();

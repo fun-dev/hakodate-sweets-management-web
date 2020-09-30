@@ -3,7 +3,7 @@ import * as Layout from './Layout';
 import { ShopInformation } from './ShopInformation';
 import { ShopProducts } from './ShopProducts';
 import { ShopCoupons } from './ShopCoupons';
-import { Typography, Box, Link, ListItem, ListItemIcon } from '@material-ui/core';
+import { Box, Link, ListItem, ListItemIcon } from '@material-ui/core';
 import { useShop } from 'src/lib/api/requests/useShop';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 

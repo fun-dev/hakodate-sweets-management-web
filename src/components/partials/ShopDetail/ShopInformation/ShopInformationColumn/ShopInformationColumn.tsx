@@ -1,6 +1,5 @@
 import { Box, ListItem, ListItemText, Divider } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { Shop } from 'src/lib/api/models/Shop';
 
 type Props = {
   label: string;
@@ -23,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ShopInformationColumn: React.FC<Props> = ({ label, data }) => {
   const classes = useStyles();
-
   return (
     <Box>
       <ListItem>
