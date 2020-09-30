@@ -19,10 +19,6 @@ type Props = {
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      //width: '100%',
-      //maxWidth: 800,
-    },
     listItem: {
       padding: theme.spacing(3),
     },
@@ -45,7 +41,7 @@ export const ShopInformation: React.FC<Props> = ({ shopId }) => {
 
   return (
     <Box height="100%" clone>
-      <Paper className={classes.root}>
+      <Paper>
         <List>
           <Box fontWeight="fontWeightMedium" fontSize="h5.fontSize" margin={2}>
             店舗詳細

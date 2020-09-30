@@ -1,16 +1,5 @@
-import {
-  Paper,
-  Box,
-  List,
-  ListItem,
-  ListItemText,
-  Divider,
-  ListItemAvatar,
-  Avatar,
-  ListItemSecondaryAction,
-} from '@material-ui/core';
+import { Box, ListItem, ListItemText, Divider } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { useShop } from 'src/lib/api/requests/useShop';
 import { Shop } from 'src/lib/api/models/Shop';
 
 type Props = {
@@ -18,13 +7,8 @@ type Props = {
   data: string;
 };
 
-type keys = keyof Shop;
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    root: {
-      //width: '100%',
-      //maxWidth: 800,
-    },
     listItem: {
       padding: theme.spacing(3),
     },
@@ -39,7 +23,6 @@ const useStyles = makeStyles((theme: Theme) =>
 
 export const ShopInformationColumn: React.FC<Props> = ({ label, data }) => {
   const classes = useStyles();
-  //const { data } = useShop({ id: shopId });
 
   return (
     <Box>
