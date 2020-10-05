@@ -1,5 +1,5 @@
 import { Paper, Box, List, ListItem, ListItemText, ListItemSecondaryAction, Divider, Avatar } from '@material-ui/core';
-import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { ShopInformationColumn } from './ShopInformationColumn';
 import { useShop } from 'src/lib/api/requests/useShop';
 import { ListItemAvatar as MaterialListItemAvatar } from '@material-ui/core';
