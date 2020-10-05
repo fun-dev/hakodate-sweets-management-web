@@ -2,8 +2,12 @@ import { Grid, Box } from '@material-ui/core';
 
 const paperSpacing = 2;
 
-export const Wrapper: React.FC = ({ children }) => (
-  <Box height="100%" clone>
+type WrapperProps = {
+  height: number | string;
+};
+
+export const Wrapper: React.FC<WrapperProps> = ({ children, height }) => (
+  <Box height={height} clone>
     <Grid container spacing={paperSpacing}>
       {children}
     </Grid>
@@ -12,9 +16,7 @@ export const Wrapper: React.FC = ({ children }) => (
 
 export const LeftItem: React.FC = ({ children }) => (
   <Grid item xs={8}>
-    <Box height="100%" clone>
-      {children}
-    </Box>
+    <Box clone>{children}</Box>
   </Grid>
 );
 
