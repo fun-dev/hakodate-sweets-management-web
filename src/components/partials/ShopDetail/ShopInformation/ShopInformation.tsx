@@ -59,7 +59,7 @@ export const ShopInformation: React.FC<Props> = ({ shopId }) => {
           <ShopInformationColumn label="郵便番号" data={data?.shop.postcode} />
           <ShopInformationColumn label="住所" data={data?.shop.address} />
           <ShopInformationColumn label="緯度" data={data?.shop.latitude} />
-          <ShopInformationColumn label="軽度" data={data?.shop.longitude} />
+          <ShopInformationColumn label="経度" data={data?.shop.longitude} />
           <ShopInformationColumn label="営業日" data={data?.shop.openingHoursSpecification} />
           <ShopInformationColumn label="定休日" data={data?.shop.closed} />
           <ShopInformationColumn label="駐車場" data={data?.shop.parking} />
