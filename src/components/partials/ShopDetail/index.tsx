@@ -7,6 +7,7 @@ import { Box, Link, ListItem, ListItemIcon, IconButton } from '@material-ui/core
 import { useShop } from 'src/lib/api/requests/useShop';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { theme } from 'src/styles/theme';
+import { useRouter } from 'next/router';
 
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
@@ -20,15 +21,14 @@ type Props = {
 
 export const ShopDetail: React.FC<Props> = ({ shopId }) => {
   const { data } = useShop({ id: shopId });
+  const router = useRouter();
 
   return (
     <Box height={tableContainerHeight}>
       <Box display="flex" marginBottom={2}>
-        <Link href="/shops">
-          <IconButton>
-            <ArrowBackIcon fontSize="default" />
-          </IconButton>
-        </Link>
+        <IconButton onClick={() => router.back()}>
+          <ArrowBackIcon fontSize="default" />
+        </IconButton>
         <Box fontSize={theme.typography.h4.fontSize}>{data?.shop.name}</Box>
       </Box>
       <Layout.Wrapper height={wrapperHeight}>
