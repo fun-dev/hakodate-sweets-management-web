@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { ListItemIcon, Menu, MenuItem } from '@material-ui/core';
+import { ListItemIcon, Menu, MenuItem, Modal } from '@material-ui/core';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,14 +16,14 @@ import {
   ChevronRight,
   Menu as MenuIcon,
   Cake,
-  Shop,
-  PinDrop,
-  QuestionAnswer,
   AccountCircle,
   ExitToApp,
   Person,
 } from '@material-ui/icons';
 import Link from 'next/link';
+import StoreIcon from '@material-ui/icons/Store';
+import NoteIcon from '@material-ui/icons/Note';
+import InfoIcon from '@material-ui/icons/Info';
 import { useAuthContext } from '../Auth';
 
 const drawerWidth = 240;
@@ -97,6 +97,22 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
+    modal: {},
+    paper: {
+      position: 'absolute',
+      width: 600,
+      backgroundColor: theme.palette.background.paper,
+      border: '2px solid #000',
+      boxShadow: theme.shadows[5],
+      padding: theme.spacing(2, 4, 3),
+    },
+    modalTitle: {
+      marginTop: '0.83em',
+      marginBottom: '0.98em',
+      color: '#33BDE7',
+    },
+    modalDescription: {},
+    modalDescripUrl: {},
   })
 );
 
@@ -104,13 +120,30 @@ type Props = {
   title: string;
 };
 
+function rand() {
+  return Math.round(Math.random() * 20) - 10;
+}
+
+function getModalStyle() {
+  const top = 50 + rand();
+  const left = 43 + rand();
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
+
 export const AppDrawer: React.FC<Props> = ({ title, children }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
+  const [infoOpen, setInfoOpen] = useState(false);
   const [accountMenuAnchorEl, setAccountMenuAnchorEl] = useState<HTMLElement | null>(null);
   const openAccountMenu = !!accountMenuAnchorEl;
   const { operator, logout } = useAuthContext();
+  const [modalStyle] = React.useState(getModalStyle); //後で書き換える
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -119,7 +152,13 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const handleInfoOpen = () => {
+    setInfoOpen(true);
+  };
 
+  const handleInfoClose = () => {
+    setInfoOpen(false);
+  };
   const handleAccountMenuOpen = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     setAccountMenuAnchorEl(e.currentTarget);
   };
@@ -156,6 +195,32 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
           <Typography className={classes.title} variant="h6" noWrap>
             {title}
           </Typography>
+          <div>
+            <IconButton onClick={handleInfoOpen} color="inherit">
+              <InfoIcon />
+            </IconButton>
+            <Modal
+              className={classes.modal}
+              open={infoOpen}
+              onClose={handleInfoClose}
+              aria-labelledby="simple-modal-title"
+              aria-describedby="simple-modal-description"
+            >
+              <div style={modalStyle} className={classes.paper}>
+                <h2 id="simple-modal-title" className="modalTitle">
+                  あまはこ商品情報管理アプリ
+                </h2>
+                <p id="simple-modal-description">
+                  本アプリは，モバイルアプリ「あまはこ」に掲載する商品や店舗の情報を追加・編集することを目的としています．本アプリで追加・編集した情報は，モバイルアプリ「あまはこ」に反映されますので，追加・編集の際は，情報に不備がないようご注意いただきますようお願い申し上げます．
+                  また，本アプリは，「函館スイーツ推進協議会」並びに「函館市」と共同で作成しております．アプリについてのお問い合わせは，下記Facebookページよりお願い致します．
+                </p>
+                <p className="modalDescripUrl">
+                  「公立はこだて未来大学 高度ICT演習 観光系プロジェクト
+                  Facebookページ」：https://www.facebook.com/FUNTourismProject/
+                </p>
+              </div>
+            </Modal>
+          </div>
           <div>
             <IconButton
               aria-label="アカウント情報"
@@ -233,7 +298,7 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
           <Link href="/shops">
             <ListItem button>
               <ListItemIcon>
-                <Shop />
+                <StoreIcon />
               </ListItemIcon>
               <ListItemText primary="店舗" />
             </ListItem>
@@ -241,20 +306,11 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
           <Link href="/coupons">
             <ListItem button>
               <ListItemIcon>
-                <PinDrop />
+                <NoteIcon />
               </ListItemIcon>
               <ListItemText primary="クーポン" />
             </ListItem>
           </Link>
-        </List>
-        <Divider />
-        <List>
-          <ListItem button>
-            <ListItemIcon>
-              <QuestionAnswer />
-            </ListItemIcon>
-            <ListItemText primary="本アプリについて" />
-          </ListItem>
         </List>
       </Drawer>
       <main className={classes.contentContainer}>
