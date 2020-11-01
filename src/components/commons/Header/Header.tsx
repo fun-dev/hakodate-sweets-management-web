@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, useTheme, Theme } from '@material-ui/core/styles';
-import { ListItemIcon, Menu, MenuItem, Modal } from '@material-ui/core';
+import { ListItemIcon, Menu, MenuItem, Box } from '@material-ui/core';
+import { Modal } from './Overrides';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -97,22 +98,13 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
-    modal: {},
     paper: {
       position: 'absolute',
       width: 600,
       backgroundColor: theme.palette.background.paper,
-      border: '2px solid #000',
       boxShadow: theme.shadows[5],
-      padding: theme.spacing(2, 4, 3),
+      padding: theme.spacing(3),
     },
-    modalTitle: {
-      marginTop: '0.83em',
-      marginBottom: '0.98em',
-      color: '#33BDE7',
-    },
-    modalDescription: {},
-    modalDescripUrl: {},
   })
 );
 
@@ -199,25 +191,23 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
             <IconButton onClick={handleInfoOpen} color="inherit">
               <InfoIcon />
             </IconButton>
-            <Modal
-              className={classes.modal}
-              open={infoOpen}
-              onClose={handleInfoClose}
-              aria-labelledby="simple-modal-title"
-              aria-describedby="simple-modal-description"
-            >
-              <div style={modalStyle} className={classes.paper}>
-                <h2 id="simple-modal-title" className="modalTitle">
+            <Modal open={infoOpen} onClose={handleInfoClose}>
+              <div className={classes.paper}>
+                <Typography variant="h4" component="h2">
                   あまはこ商品情報管理アプリ
-                </h2>
-                <p id="simple-modal-description">
-                  本アプリは，モバイルアプリ「あまはこ」に掲載する商品や店舗の情報を追加・編集することを目的としています．本アプリで追加・編集した情報は，モバイルアプリ「あまはこ」に反映されますので，追加・編集の際は，情報に不備がないようご注意いただきますようお願い申し上げます．
-                  また，本アプリは，「函館スイーツ推進協議会」並びに「函館市」と共同で作成しております．アプリについてのお問い合わせは，下記Facebookページよりお願い致します．
-                </p>
-                <p className="modalDescripUrl">
-                  「公立はこだて未来大学 高度ICT演習 観光系プロジェクト
-                  Facebookページ」：https://www.facebook.com/FUNTourismProject/
-                </p>
+                </Typography>
+                <Box mt={2}>
+                  <Typography variant="body1" component="p">
+                    本アプリは，モバイルアプリ「あまはこ」に掲載する商品や店舗の情報を追加・編集することを目的としています．本アプリで追加・編集した情報は，モバイルアプリ「あまはこ」に反映されますので，追加・編集の際は，情報に不備がないようご注意いただきますようお願い申し上げます．
+                    また，本アプリは，「函館スイーツ推進協議会」並びに「函館市」と共同で作成しております．アプリについてのお問い合わせは，下記Facebookページよりお願い致します．
+                  </Typography>
+                </Box>
+                <Box mt={2}>
+                  <Typography variant="body1" component="p">
+                    「公立はこだて未来大学 高度ICT演習 観光系プロジェクト
+                    Facebookページ」：https://www.facebook.com/FUNTourismProject/
+                  </Typography>
+                </Box>
               </div>
             </Modal>
           </div>
