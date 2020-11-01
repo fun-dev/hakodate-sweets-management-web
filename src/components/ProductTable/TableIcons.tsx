@@ -11,6 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   ArrowDownward,
+  FilterList,
 } from '@material-ui/icons';
 import { Icons } from 'material-table';
 
@@ -27,4 +28,5 @@ export const tableIcons: Icons = {
   ResetSearch: forwardRef<SVGSVGElement>((props, ref) => <Clear {...props} ref={ref} />),
   Search: forwardRef<SVGSVGElement>((props, ref) => <Search {...props} ref={ref} />),
   SortArrow: forwardRef<SVGSVGElement>((props, ref) => <ArrowDownward {...props} ref={ref} />),
+  Filter: forwardRef<SVGSVGElement>((props, ref) => <FilterList {...props} ref={ref} />),
 };
