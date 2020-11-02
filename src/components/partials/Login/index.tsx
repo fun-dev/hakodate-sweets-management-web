@@ -29,20 +29,6 @@ const FormControl = styled(MaterialFormControl)`
   margin: ${({ theme }) => theme.spacing(1)}px;
 `;
 
-const theme = createMuiTheme({
-  palette: {
-    primary: { 500: '#59AC44' },
-  },
-  overrides: {
-    MuiButton: {
-      label: {
-        color: 'white',
-        fontWeight: 'bold',
-      },
-    },
-  },
-});
-
 export const Login: React.FC = () => {
   const { login } = useAuthContext();
   const [visiblePassword, setVisiblePassword] = useState(false);
@@ -55,13 +41,13 @@ export const Login: React.FC = () => {
   return (
     <Box>
       <Container>
-        <Box mt={3.9}>
-          <img src="/sweets-logo.png" alt="logo" width="400" />
-        </Box>
         <Paper elevation={4}>
           <Box py={5} px={3} width={500}>
+            <Box display="flex" justifyContent="center" mb={1}>
+              <img src="/sweets-logo.png" alt="logo" width="400" />
+            </Box>
             <Box textAlign="center" fontWeight="fontWeightMedium" fontSize="h6.fontSize" mb={2.5} color="#5E6C84">
-              あまはこ商品情報管理アプリにログイン
+              あまはこコンテンツ管理アプリ
             </Box>
             <Formik
               initialValues={{ email: '', password: '' }}
@@ -111,19 +97,17 @@ export const Login: React.FC = () => {
                         <Alert severity="error">メールアドレスまたはパスワードが正しくありません。</Alert>
                       </Box>
                     )}
-                    <ThemeProvider theme={theme}>
-                      <Box margin={1} minHeight={36} clone>
-                        <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
-                          {!loadingLoginResult ? (
-                            'ログイン'
-                          ) : (
-                            <Box position="absolute" top="50%" left="50%" marginTop={-1.5} marginLeft={-1.5}>
-                              <CircularProgress size={24} />
-                            </Box>
-                          )}
-                        </Button>
-                      </Box>
-                    </ThemeProvider>
+                    <Box margin={1} minHeight={36} clone>
+                      <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
+                        {!loadingLoginResult ? (
+                          'ログイン'
+                        ) : (
+                          <Box position="absolute" top="50%" left="50%" marginTop={-1.5} marginLeft={-1.5}>
+                            <CircularProgress size={24} />
+                          </Box>
+                        )}
+                      </Button>
+                    </Box>
                   </form>
                 </Box>
               )}
