@@ -9,8 +9,6 @@ import {
   InputAdornment,
   IconButton,
   CircularProgress,
-  ThemeProvider,
-  createMuiTheme,
 } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import styled from 'styled-components';
