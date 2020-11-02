@@ -20,6 +20,8 @@ import {
   Button,
   TextField as MaterialTextField,
   Paper,
+  StepIconClasskey,
+  FormHelperText,
 } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
 import { TransitionProps } from '@material-ui/core/transitions/transition';
@@ -27,6 +29,7 @@ import React, { useState, ChangeEvent } from 'react';
 import styled from 'styled-components';
 import { SmallCategory } from 'src/lib/api/models/Category';
 import { useCategories } from 'src/lib/api/requests/useCategories';
+import { getTextValidationResult } from './ValidatitonResult';
 
 type Props = {
   open: boolean;
@@ -56,9 +59,13 @@ const TextField = styled(MaterialTextField)`
 `;
 
 export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
-  const [state, setState] = useState<State>({ name: '', description: '', price: '' });
+  const [state, setState] = useState<State>({ name: '', description: '', price: ''  });
   const [selectedCategories, setSelectedCategories] = useState<SmallCategory[]>([]);
   const { classifiedCategories } = useCategories();
+  const nameValidationResult = getTextValidationResult(state.name ?? '', { must: true });
+  const priceValidationResult = getTextValidationResult(state.price ?? '', { must: true, numeric: true });
+  const descriptionValidationResult = getTextValidationResult(state.description ?? '', { must: true });
+  //const categoryValidationResult = getSelectValidationResult();
 
   const handleInputChange = (key: keyof State) => (e: ChangeEvent<HTMLInputElement>) => {
     setState((state) => ({ ...state, [key]: e.currentTarget.value }));
@@ -72,8 +79,6 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
       setSelectedCategories((categories) => [...categories.slice(0, index), ...categories.slice(index + 1)]);
     }
   };
-
-  const handleAddText = () => {};
 
   return (
     <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition}>
@@ -93,11 +98,13 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
             <Container maxWidth="sm">
               <Box display="flex" flexDirection="column" clone>
                 <form>
-                  <FormControl variant="outlined">
+                  <FormControl variant="outlined" error={nameValidationResult.error}>
                     <InputLabel htmlFor="name">商品名</InputLabel>
                     <OutlinedInput id="name" value={state.name} onChange={handleInputChange('name')} labelWidth={48} />
+                    <FormHelperText>{nameValidationResult.errorMessage}</FormHelperText>
                   </FormControl>
-                  <FormControl variant="outlined">
+
+                  <FormControl variant="outlined" error={priceValidationResult.error}>
                     <InputLabel htmlFor="price">価格</InputLabel>
                     <OutlinedInput
                       id="price"
@@ -105,9 +112,12 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
                       onChange={handleInputChange('price')}
                       labelWidth={32}
                     />
+                    <FormHelperText>{priceValidationResult.errorMessage}</FormHelperText>
                   </FormControl>
 
                   <TextField
+                    error={descriptionValidationResult.error}
+                    helperText={descriptionValidationResult.errorMessage}
                     id="description"
                     label="説明"
                     multiline
@@ -117,7 +127,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
                     variant="outlined"
                   />
 
-                  <FormControl variant="outlined">
+                  <FormControl variant="outlined" error={false}>
                     <InputLabel>カテゴリ</InputLabel>
                     <Select
                       multiple
@@ -169,7 +179,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
                   </FormControl>
                   <Box display="flex" justifyContent="center">
                     <Box margin={1} maxWidth="280px" clone>
-                      <Button variant="contained" color="primary" onClick={handleAddText}>
+                      <Button variant="contained" color="primary">
                         追加
                       </Button>
                     </Box>
