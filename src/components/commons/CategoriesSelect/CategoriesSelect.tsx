@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import { SmallCategory } from 'src/lib/api/models/Category';
 import { useCategories } from 'src/lib/api/requests/useCategories';
-import { FilterList, ClearAll } from '@material-ui/icons';
+import { Search, ClearAll } from '@material-ui/icons';
 
 const FormControl = styled(MaterialFormControl)`
   min-width: 200px;
@@ -77,7 +77,7 @@ export const CategoriesSelect: React.FC<Props> = ({ initialValue, handleMenuClos
         multiple
         value={selectedCategories}
         input={<Input />}
-        startAdornment={filterAdornment ? <FilterList /> : null}
+        startAdornment={filterAdornment ? <Search /> : null}
         renderValue={(selected) => (
           <Box display="flex" flexWrap="wrap" height="100%">
             {(selected as SmallCategory[]).map((category) => (

@@ -12,7 +12,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core';
-import { FilterList, ClearAll } from '@material-ui/icons';
+import { Search, ClearAll } from '@material-ui/icons';
 import { Shop } from 'src/lib/api/models/Shop';
 import { useShops } from 'src/lib/api/requests/useShops';
 
@@ -75,7 +75,7 @@ export const ShopsSelect: React.FC<Props> = ({ initialValue, handleMenuClose, fi
         multiple
         value={selectedShops}
         input={<Input />}
-        startAdornment={filterAdornment ? <FilterList /> : null}
+        startAdornment={filterAdornment ? <Search /> : null}
         renderValue={(selected) => (
           <Box display="flex" flexWrap="wrap" height="100%">
             {(selected as Shop[]).map((shop) => (
