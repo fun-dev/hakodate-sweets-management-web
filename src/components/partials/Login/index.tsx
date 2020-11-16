@@ -25,6 +25,8 @@ const Container = styled.div`
 
 const FormControl = styled(MaterialFormControl)`
   margin: ${({ theme }) => theme.spacing(1)}px;
+  padding: ${({ theme }) => theme.spacing(1)}px;
+  padding-right: ${({ theme }) => theme.spacing(2)}px;
 `;
 
 export const Login: React.FC = () => {
@@ -59,7 +61,7 @@ export const Login: React.FC = () => {
               }}
             >
               {({ values, handleChange, handleSubmit }) => (
-                <Box display="flex" flexDirection="column" minWidth="20rem" height="400" clone>
+                <Box display="flex" flexDirection="column" alignItems="center" minWidth="20rem" height="400" clone>
                   <form onSubmit={handleSubmit}>
                     <FormControl variant="outlined">
                       <InputLabel htmlFor="email">メールアドレス</InputLabel>
@@ -95,7 +97,7 @@ export const Login: React.FC = () => {
                         <Alert severity="error">メールアドレスまたはパスワードが正しくありません。</Alert>
                       </Box>
                     )}
-                    <Box margin={1} minHeight={36} clone>
+                    <Box margin={1} minHeight={36} width="-webkit-fill-available" clone>
                       <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
                         {!loadingLoginResult ? (
                           'ログイン'
