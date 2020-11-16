@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
     }
   }, []);
 
-  const withOutAppDrawer = withOutAppDrawerPathnames.includes(router.pathname);
+  const withOutAppDrawer = withOutAppDrawerPathnames.includes(router.pathname) || Component.displayName === 'ErrorPage';
 
   return (
     <>
