@@ -31,6 +31,9 @@ const StickyMenuItem = styled(MenuItem)`
     color: ${({ theme }) => theme.palette.grey[500]};
     opacity: 1;
   }
+  &.MuiListItem-button:hover {
+    background-color: ${({ theme }) => theme.palette.secondary.contrastText};
+  }
 `;
 
 type Props = {
