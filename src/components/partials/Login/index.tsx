@@ -26,7 +26,6 @@ const Container = styled.div`
 const FormControl = styled(MaterialFormControl)`
   margin: ${({ theme }) => theme.spacing(1)}px;
   padding: ${({ theme }) => theme.spacing(1)}px;
-  padding-right: ${({ theme }) => theme.spacing(2)}px;
 `;
 
 export const Login: React.FC = () => {
