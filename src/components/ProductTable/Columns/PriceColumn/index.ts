@@ -7,4 +7,5 @@ export const priceColumn: ProductTableColumn = {
   editable: 'never',
   width: '6rem',
   sorting: false,
+  filtering: false,
 };

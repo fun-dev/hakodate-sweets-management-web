@@ -1,4 +1,6 @@
+import { Shop } from 'src/lib/api/models/Shop';
 import { ProductTableColumn } from '../ColumnType';
+import { FilterComponent } from './FilterComponent';
 import { ShopName } from './ShopName';
 
 export const shopNameColumn: ProductTableColumn = {
@@ -9,4 +11,13 @@ export const shopNameColumn: ProductTableColumn = {
   render: (sweet) => <ShopName shop={sweet.shop} />,
   width: '20rem',
   sorting: false,
+  filterComponent: ({ columnDef, onFilterChanged }) => (
+    <FilterComponent columnDef={columnDef as any} onFilterChanged={onFilterChanged} />
+  ),
+  customFilterAndSearch: (filter: Shop[], product) => {
+    if (filter === undefined || filter === null || filter.length === 0) {
+      return true;
+    }
+    return filter.map((shop) => shop.id).includes(product.shop.id);
+  },
 };
