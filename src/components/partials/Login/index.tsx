@@ -42,7 +42,7 @@ export const Login: React.FC = () => {
         <Paper elevation={4}>
           <Box py={5} px={3} width={500}>
             <Box display="flex" justifyContent="center" mb={1}>
-              <img src="/sweets-logo.png" alt="logo" width="400" />
+              <img src="/sweets-logo.png" alt="logo" width="250" />
             </Box>
             <Box textAlign="center" fontWeight="fontWeightMedium" fontSize="h6.fontSize" mb={2.5} color="#5E6C84">
               あまはこコンテンツ管理アプリ
