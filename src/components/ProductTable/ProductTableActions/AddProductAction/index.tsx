@@ -68,7 +68,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
   //const categoryValidationResult = getSelectValidationResult();
 
   const handleInputChange = (key: keyof State) => (e: ChangeEvent<HTMLInputElement>) => {
-    setState((state) => ({ ...state, [key]: e.currentTarget.value }));
+    setState({ ...state, [key]: e.currentTarget.value });
   };
 
   const handleMenuItemClick = (selectedCategory: SmallCategory) => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
