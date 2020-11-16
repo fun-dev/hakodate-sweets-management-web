@@ -19,7 +19,8 @@ import { useAuthContext } from 'src/components/commons/Auth';
 const Container = styled.div`
   display: grid;
   place-items: center;
-  height: 100vh;
+  height: 70vh;
+  margin-top: 60px;
 `;
 
 const FormControl = styled(MaterialFormControl)`
@@ -36,74 +37,82 @@ export const Login: React.FC = () => {
   const [loadingLoginResult, setLoadingLoginResult] = useState(false);
 
   return (
-    <Container>
-      <Box height="max-content" width="max-content" padding={3} clone>
-        <Paper>
-          <Formik
-            initialValues={{ email: '', password: '' }}
-            onSubmit={async (values) => {
-              setLoadingLoginResult(true);
-              const succeeded = await login(values.email, values.password);
-              if (!succeeded) {
-                setShowLoginErrorAlert(true);
-                setLoadingLoginResult(false);
-              }
-            }}
-          >
-            {({ values, handleChange, handleSubmit }) => (
-              <Box display="flex" flexDirection="column" minWidth="20rem" clone>
-                <form onSubmit={handleSubmit}>
-                  <FormControl variant="outlined">
-                    <InputLabel htmlFor="email">メールアドレス</InputLabel>
-                    <OutlinedInput
-                      id="email"
-                      name="email"
-                      type="text"
-                      value={values.email}
-                      onChange={handleChange}
-                      labelWidth={110}
-                    />
-                  </FormControl>
-                  <FormControl variant="outlined">
-                    <InputLabel htmlFor="password">パスワード</InputLabel>
-                    <OutlinedInput
-                      id="password"
-                      name="password"
-                      type={visiblePassword ? 'text' : 'password'}
-                      value={values.password}
-                      onChange={handleChange}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton onClick={handleVisiblePassword} edge="end">
-                            {visiblePassword ? <Visibility /> : <VisibilityOff />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      labelWidth={80}
-                    />
-                  </FormControl>
-                  {showLoginErrorAlert && (
-                    <Box margin={1} clone>
-                      <Alert severity="error">メールアドレスまたはパスワードが正しくありません。</Alert>
+    <Box>
+      <Container>
+        <Paper elevation={4}>
+          <Box py={5} px={3} width={500}>
+            <Box display="flex" justifyContent="center" mb={1}>
+              <img src="/sweets-logo.png" alt="logo" width="250" />
+            </Box>
+            <Box textAlign="center" fontWeight="fontWeightMedium" fontSize="h6.fontSize" mb={2.5} color="#5E6C84">
+              あまはこコンテンツ管理アプリ
+            </Box>
+            <Formik
+              initialValues={{ email: '', password: '' }}
+              onSubmit={async (values) => {
+                setLoadingLoginResult(true);
+                const succeeded = await login(values.email, values.password);
+                if (!succeeded) {
+                  setShowLoginErrorAlert(true);
+                  setLoadingLoginResult(false);
+                }
+              }}
+            >
+              {({ values, handleChange, handleSubmit }) => (
+                <Box display="flex" flexDirection="column" minWidth="20rem" height="400" clone>
+                  <form onSubmit={handleSubmit}>
+                    <FormControl variant="outlined">
+                      <InputLabel htmlFor="email">メールアドレス</InputLabel>
+                      <OutlinedInput
+                        id="email"
+                        name="email"
+                        type="text"
+                        value={values.email}
+                        onChange={handleChange}
+                        labelWidth={110}
+                      />
+                    </FormControl>
+                    <FormControl variant="outlined">
+                      <InputLabel htmlFor="password">パスワード</InputLabel>
+                      <OutlinedInput
+                        id="password"
+                        name="password"
+                        type={visiblePassword ? 'text' : 'password'}
+                        value={values.password}
+                        onChange={handleChange}
+                        endAdornment={
+                          <InputAdornment position="end">
+                            <IconButton onClick={handleVisiblePassword} edge="end">
+                              {visiblePassword ? <Visibility /> : <VisibilityOff />}
+                            </IconButton>
+                          </InputAdornment>
+                        }
+                        labelWidth={80}
+                      />
+                    </FormControl>
+                    {showLoginErrorAlert && (
+                      <Box margin={1} clone>
+                        <Alert severity="error">メールアドレスまたはパスワードが正しくありません。</Alert>
+                      </Box>
+                    )}
+                    <Box margin={1} minHeight={36} clone>
+                      <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
+                        {!loadingLoginResult ? (
+                          'ログイン'
+                        ) : (
+                          <Box position="absolute" top="50%" left="50%" marginTop={-1.5} marginLeft={-1.5}>
+                            <CircularProgress size={24} />
+                          </Box>
+                        )}
+                      </Button>
                     </Box>
-                  )}
-                  <Box margin={1} minHeight={36} clone>
-                    <Button variant="contained" color="primary" type="submit" disabled={loadingLoginResult}>
-                      {!loadingLoginResult ? (
-                        'ログイン'
-                      ) : (
-                        <Box position="absolute" top="50%" left="50%" marginTop={-1.5} marginLeft={-1.5}>
-                          <CircularProgress size={24} />
-                        </Box>
-                      )}
-                    </Button>
-                  </Box>
-                </form>
-              </Box>
-            )}
-          </Formik>
+                  </form>
+                </Box>
+              )}
+            </Formik>
+          </Box>
         </Paper>
-      </Box>
-    </Container>
+      </Container>
+    </Box>
   );
 };

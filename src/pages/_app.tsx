@@ -26,7 +26,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
   return (
     <>
       <Head>
-        <title>函館スイーツデータ管理</title>
+        <title>あまはこコンテンツ管理アプリ</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StylesProvider injectFirst>
@@ -39,7 +39,7 @@ const App: React.FC<AppProps> = ({ Component, pageProps, router }) => {
                 {withOutAppDrawer ? (
                   <Component {...pageProps} />
                 ) : (
-                  <AppDrawer title="函館スイーツデータ管理">
+                  <AppDrawer title="あまはこコンテンツ管理アプリ">
                     <Component {...pageProps} />
                   </AppDrawer>
                 )}
