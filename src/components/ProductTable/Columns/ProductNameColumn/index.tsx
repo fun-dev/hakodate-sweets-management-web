@@ -9,4 +9,15 @@ export const productNameColumn: ProductTableColumn = {
   render: (sweet) => <ProductName sweet={sweet} />,
   width: '20rem',
   sorting: false,
+  customFilterAndSearch: (filter: string, row) => {
+    if (filter === undefined || filter === null || filter.length === 0) {
+      return true;
+    }
+
+    if (row.name.includes(filter)) {
+      return true;
+    }
+
+    return false;
+  },
 };
