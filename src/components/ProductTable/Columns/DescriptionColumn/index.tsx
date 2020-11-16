@@ -6,6 +6,7 @@ export const descriptionColumn: ProductTableColumn = {
   align: 'left',
   editable: 'never',
   sorting: false,
+  width: 400,
   customFilterAndSearch: (filter: string, row) => {
     if (filter === undefined || filter === null || filter.length === 0) {
       return true;
