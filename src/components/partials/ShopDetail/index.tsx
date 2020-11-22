@@ -37,7 +37,7 @@ export const ShopDetail: React.FC<Props> = ({ shopId }) => {
         </Layout.LeftItem>
         <Layout.RightContainer>
           <Layout.TopRightItem>
-            <ShopProducts />
+            <ShopProducts shopId={shopId} />
           </Layout.TopRightItem>
 
           <Layout.BottomRightItem>
