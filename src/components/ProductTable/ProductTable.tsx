@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { Box, TableContainer } from '@material-ui/core';
+import { Box, TableContainer, Typography } from '@material-ui/core';
 import MaterialTable from 'material-table';
 import { useSweets } from 'src/lib/api/requests/useSweets';
 import { columns } from './Columns';
@@ -42,7 +42,12 @@ export const ProductTable: React.FC = () => {
             isLoading={!data}
             actions={[
               {
-                icon: () => <AddBox />,
+                icon: () => (
+                  <Box display="flex">
+                    <AddBox />
+                    <Typography>商品を追加する</Typography>
+                  </Box>
+                ),
                 isFreeAction: true,
                 position: 'toolbar',
                 onClick: handleClickOpen,
@@ -50,10 +55,13 @@ export const ProductTable: React.FC = () => {
             ]}
             components={{}}
             options={{
+              search: false,
+              filtering: true,
               headerStyle: {
                 position: 'sticky',
                 top: 0,
               },
+              filterRowStyle: {},
               maxBodyHeight: tableBodyHeight,
               minBodyHeight: tableBodyHeight,
               draggable: false,
@@ -64,8 +72,6 @@ export const ProductTable: React.FC = () => {
             editable={{
               onRowUpdate: (newData, oldData) =>
                 new Promise(async (resolve, reject) => {
-                  console.log('newData', newData);
-                  console.log('oldData', oldData);
                   const result = await updateSweetRequest(
                     { id: newData.id },
                     { sweet: { small_category_ids: newData.small_categories.map((x) => x.id) } }
