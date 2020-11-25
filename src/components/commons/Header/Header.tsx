@@ -98,11 +98,10 @@ const useStyles = makeStyles((theme: Theme) =>
     title: {
       flexGrow: 1,
     },
-    paper: {
+    modal: {
       position: 'absolute',
-      width: 600,
+      width: 700,
       backgroundColor: theme.palette.background.paper,
-      boxShadow: theme.shadows[5],
       padding: theme.spacing(3),
     },
   })
@@ -192,20 +191,18 @@ export const AppDrawer: React.FC<Props> = ({ title, children }) => {
               <InfoIcon />
             </IconButton>
             <Modal open={infoOpen} onClose={handleInfoClose}>
-              <div className={classes.paper}>
-                <Typography variant="h4" component="h2">
-                  あまはこ商品情報管理アプリ
+              <div className={classes.modal}>
+                <Typography variant="h5" component="h2" color="primary">
+                  函館スイーツデータ管理アプリ
                 </Typography>
                 <Box mt={2}>
                   <Typography variant="body1" component="p">
-                    本アプリは，モバイルアプリ「あまはこ」に掲載する商品や店舗の情報を追加・編集することを目的としています．本アプリで追加・編集した情報は，モバイルアプリ「あまはこ」に反映されますので，追加・編集の際は，情報に不備がないようご注意いただきますようお願い申し上げます．
-                    また，本アプリは，「函館スイーツ推進協議会」並びに「函館市」と共同で作成しております．アプリについてのお問い合わせは，下記Facebookページよりお願い致します．
-                  </Typography>
-                </Box>
-                <Box mt={2}>
-                  <Typography variant="body1" component="p">
-                    「公立はこだて未来大学 高度ICT演習 観光系プロジェクト
-                    Facebookページ」：https://www.facebook.com/FUNTourismProject/
+                    <Typography>
+                      本アプリは、モバイルアプリ「あまはこ」に掲載する商品や店舗のデータを追加・編集することを目的としています。
+                    </Typography>
+                    <Typography>
+                      本アプリで追加・編集したデータは、モバイルアプリ「あまはこ」に反映されますので、追加・編集の際は、情報に不備がないようご注意いただきますようお願い申し上げます。
+                    </Typography>
                   </Typography>
                 </Box>
               </div>
