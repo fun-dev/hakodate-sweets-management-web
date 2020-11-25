@@ -13,7 +13,6 @@ export const categoriesColumn: ProductTableColumn = {
   editComponent: ({ rowData: sweet, onChange }) => (
     <EditableCategories sweet={sweet} changeDraftCategories={onChange} />
   ),
-  width: 300,
   sorting: false,
   filtering: true,
   tooltip: 'カテゴリ',
