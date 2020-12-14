@@ -40,9 +40,10 @@ type Props = {
   initialValue?: SmallCategory[];
   handleMenuClose: (selectedCategories: SmallCategory[]) => void;
   filterAdornment?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 };
 
-export const CategoriesSelect: React.FC<Props> = ({ initialValue, handleMenuClose, filterAdornment }) => {
+export const CategoriesSelect: React.FC<Props> = ({ initialValue, handleMenuClose, filterAdornment, variant }) => {
   const { classifiedCategories } = useCategories();
   const [selectedCategories, setSelectedCategories] = useState<SmallCategory[]>(initialValue ?? []);
 
@@ -72,7 +73,7 @@ export const CategoriesSelect: React.FC<Props> = ({ initialValue, handleMenuClos
   const disabledResetAllButton = selectedCategories.length === 0;
 
   return (
-    <FormControl>
+    <FormControl variant="outlined">
       <Select
         multiple
         value={selectedCategories}
@@ -130,4 +131,8 @@ export const CategoriesSelect: React.FC<Props> = ({ initialValue, handleMenuClos
       </Select>
     </FormControl>
   );
+};
+
+CategoriesSelect.defaultProps = {
+  variant: 'standard',
 };

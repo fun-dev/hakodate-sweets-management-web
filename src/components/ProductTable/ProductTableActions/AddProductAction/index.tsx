@@ -30,6 +30,9 @@ import styled from 'styled-components';
 import { SmallCategory } from 'src/lib/api/models/Category';
 import { useCategories } from 'src/lib/api/requests/useCategories';
 import { getTextValidationResult } from './ValidatitonResult';
+import { ShopsSelect } from 'src/components/commons/ShopsSelect';
+import { Shop } from 'src/lib/api/models/Shop';
+import { ShopSelect } from 'src/components/commons/ShopSelect';
 
 type Props = {
   open: boolean;
@@ -50,17 +53,20 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const FormControl = styled(MaterialFormControl)`
-  margin: ${({ theme }) => theme.spacing(1)}px;
+  margin-top: ${({ theme }) => theme.spacing(1)}px;
+  margin-bottom: ${({ theme }) => theme.spacing(1)}px;
   min-width: 200px;
 `;
 
 const TextField = styled(MaterialTextField)`
-  margin: ${({ theme }) => theme.spacing(1)}px;
+  margin-top: ${({ theme }) => theme.spacing(1)}px;
+  margin-bottom: ${({ theme }) => theme.spacing(1)}px;
 `;
 
 export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
-  const [state, setState] = useState<State>({ name: '', description: '', price: ''  });
+  const [state, setState] = useState<State>({ name: '', description: '', price: '' });
   const [selectedCategories, setSelectedCategories] = useState<SmallCategory[]>([]);
+  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
   const { classifiedCategories } = useCategories();
   const nameValidationResult = getTextValidationResult(state.name ?? '', { must: true });
   const priceValidationResult = getTextValidationResult(state.price ?? '', { must: true, numeric: true });
@@ -78,6 +84,10 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
     } else {
       setSelectedCategories((categories) => [...categories.slice(0, index), ...categories.slice(index + 1)]);
     }
+  };
+
+  const handleShopSelect = (selectedShop: Shop) => {
+    setSelectedShop(selectedShop);
   };
 
   return (
@@ -177,6 +187,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
                       ))}
                     </Select>
                   </FormControl>
+                  <ShopSelect handleMenuClose={handleShopSelect} />
                   <Box display="flex" justifyContent="center">
                     <Box margin={1} maxWidth="280px" clone>
                       <Button variant="contained" color="primary">
