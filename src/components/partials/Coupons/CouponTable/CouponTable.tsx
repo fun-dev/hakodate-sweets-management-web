@@ -23,7 +23,7 @@ export const CouponTable: React.FC = () => {
   return (
     <Box height={tableContainerHeight} clone>
     <MaterialTable
-      title="クーポン一覧"
+      title="クーポン"
       icons={tableIcons}
       columns={[
         {
