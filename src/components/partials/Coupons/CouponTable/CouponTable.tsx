@@ -6,6 +6,10 @@ import { theme } from 'src/styles/theme';
 import { tableIcons } from 'src/components/ProductTable/TableIcons';
 import dayjs from 'dayjs'
 
+//UI確定後TableIconsへ
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
 const tableContainerHeight = `calc(100vh - ${appHeaderHeight}px - ${padding * 2}px)`;
@@ -43,7 +47,6 @@ export const CouponTable: React.FC = () => {
       data={data?.coupons ?? []}
       options={{
         search: false,
-        filtering: true,
         headerStyle: {
           position: 'sticky',
           top: 0,
@@ -55,7 +58,13 @@ export const CouponTable: React.FC = () => {
         pageSize: 10,
         pageSizeOptions: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
       }}
-
+      editable={{
+        onRowUpdate: (newData, oldData) =>
+          new Promise(async (resolve, reject) => {
+  
+          }),
+        editTooltip: (coupon) => `${coupon.condition}を編集`,
+      }}
     />
     </Box>
   );
