@@ -22,7 +22,7 @@
     "next": "9.4.2",
     "nookies": "^2.4.0",
     "notistack": "^1.0.1",
-    "react": "16.13.1",
+    "react": "16.14.0",
     "react-dom": "16.13.1",
     "styled-components": "^5.2.0",
     "swr": "^0.2.3",
