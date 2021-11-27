@@ -18,11 +18,11 @@ if (!firebaseClient.apps.length) {
 
 export async function loginWithEmailAndPassword(email: string, password: string) {
   try {
-    await firebaseClient.auth().signInWithEmailAndPassword(email, password);
-    return true;
+    const credentials = await firebaseClient.auth().signInWithEmailAndPassword(email, password);
+    const token = await credentials.user.getIdToken();
+    return token;
   } catch (e) {
-    console.log('login error', e);
-    return false;
+    throw new Error(e);
   }
 }
 

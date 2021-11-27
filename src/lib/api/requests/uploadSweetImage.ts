@@ -23,7 +23,7 @@ export async function uploadSweetImage(
     const cookies = nookies.get();
     const formData = createUploadSweetImageFormData(file);
 
-    return await axios.post<UploadSweetImageResponse>(`/sweets/${id}`, formData, {
+    return await axios.post<UploadSweetImageResponse>(`/sweets/${id}/upload`, formData, {
       headers: {
         Authorization: `bearer ${cookies.token}`,
       },

@@ -1,7 +1,8 @@
-import { createContext, useState, useEffect, useContext } from 'react';
+import { createContext, useState, useEffect, useContext, useCallback } from 'react';
 import { firebaseClient, loginWithEmailAndPassword, logout as firebaseLogout } from 'src/lib/firebase/client';
 import nookies from 'nookies';
 import { useRouter } from 'next/router';
+import { createUserRequest } from 'src/lib/api/requests/createUserRequest';
 
 type AuthContext = {
   operator: firebaseClient.User | null;
@@ -37,19 +38,22 @@ const useAuthProvider = () => {
     });
   }, []);
 
-  const login = async (email: string, password: string) => {
-    const loginSucceeded = await loginWithEmailAndPassword(email, password);
-    if (loginSucceeded) {
+  const login = useCallback(async (email: string, password: string) => {
+    try {
+      const token = await loginWithEmailAndPassword(email, password);
+      const { data } = await createUserRequest({ token, user: { display_name: email } });
       router.push('/');
+      return true;
+    } catch (e) {
+      console.error('login error', e);
+      return false;
     }
-
-    return loginSucceeded;
-  };
+  }, []);
 
   const logout = async () => {
     const logoutSucceeded = await firebaseLogout();
     if (logoutSucceeded) {
-      router.push('/login');
+      router.replace('/login');
     }
 
     return logoutSucceeded;

@@ -5,6 +5,10 @@ import nookies from 'nookies';
 import { SmallCategory } from '../models/Category';
 import { Shop } from '../models/Shop';
 
+type PostSweetPath = {
+  shopId: Shop['id'];
+};
+
 type PostSweetBody = {
   sweet: {
     name: Sweet['name'];
@@ -13,18 +17,20 @@ type PostSweetBody = {
     from_rdf: Sweet['from_rdf'];
     small_category_ids: SmallCategory['id'][];
   };
-  shop_id: Shop['id'];
 };
 
 type PostSweetResponse = {
   sweet: Sweet;
 };
 
-export async function createSweetRequest(body: PostSweetBody): Promise<AxiosResponse<PostSweetResponse> | null> {
+export async function createSweetRequest(
+  { shopId }: PostSweetPath,
+  body: PostSweetBody
+): Promise<AxiosResponse<PostSweetResponse> | null> {
   try {
     const cookies = nookies.get();
 
-    return await axios.post<PostSweetResponse>(`/sweets`, body, {
+    return await axios.post<PostSweetResponse>(`/shops/${shopId}/sweets`, body, {
       headers: {
         Authorization: `bearer ${cookies.token}`,
       },

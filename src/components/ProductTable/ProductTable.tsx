@@ -9,7 +9,7 @@ import { localization } from './Localization';
 import { AddBox } from '@material-ui/icons';
 import { updateSweetRequest } from 'src/lib/api/requests/updateSweetRequest';
 import { useSnackbar } from 'notistack';
-import { AddProductDialog } from './ProductTableActions/AddProductAction';
+import { AddProductDialog } from './ProductTableActions/AddProductDialog';
 
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
@@ -26,7 +26,7 @@ export const ProductTable: React.FC = () => {
     setOpen(true);
   }, [setOpen]);
 
-  const handleClose = useCallback(() => {
+  const handleClose = useCallback(async () => {
     setOpen(false);
   }, [setOpen]);
 
@@ -40,6 +40,9 @@ export const ProductTable: React.FC = () => {
             data={data?.sweets ?? []}
             icons={tableIcons}
             isLoading={!data}
+            onFilterChange={() => {
+              // revalidate();
+            }}
             actions={[
               {
                 icon: () => (
@@ -103,7 +106,7 @@ export const ProductTable: React.FC = () => {
                         horizontal: 'center',
                       },
                     });
-                    resolve();
+                    resolve('');
                   }
                 }),
               editTooltip: (sweet) => `${sweet.name}を編集`,
@@ -111,7 +114,7 @@ export const ProductTable: React.FC = () => {
           />
         </TableContainer>
       </Box>
-      <AddProductDialog open={open} handleClose={handleClose} />
+      <AddProductDialog open={open} handleClose={handleClose} onSucceedCreate={() => {}} onFailureCreate={() => {}} />
     </>
   );
 };
