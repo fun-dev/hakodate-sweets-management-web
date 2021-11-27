@@ -131,11 +131,13 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
     handleClose();
   };
 
+  const disabledCreateButton =
+    !state.name || !state.description || !state.price || selectedCategories.length === 0 || !selectedShop;
+
   return (
     <Drawer open={open} onClose={onClose} anchor="right">
-      <div ref={ref} />
       <Box position="relative" clone>
-        <AppBar color="inherit">
+        <AppBar color="inherit" position="fixed">
           <Box display="flex" clone>
             <Toolbar>
               <Box flexGrow={1} clone>
@@ -148,7 +150,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
           </Box>
         </AppBar>
       </Box>
-      <Box display="flex" justifyContent="center" height="inherit">
+      <Box display="flex" justifyContent="center" height="inherit" pt={10}>
         <Box width="50%" padding={3} clone>
           <Paper>
             <Container maxWidth="sm">
@@ -251,7 +253,12 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
                   <ImageInput onChange={handleImageChange} />
                   <Box display="flex" justifyContent="center">
                     <Box margin={1} minHeight={36} width="100%" clone>
-                      <Button variant="contained" color="primary" type="submit" disabled={loadingCreate}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        type="submit"
+                        disabled={disabledCreateButton || loadingCreate}
+                      >
                         {!loadingCreate ? (
                           '商品を追加する'
                         ) : (
