@@ -4,6 +4,7 @@ import {
   FormControl as MaterialFormControl,
   Select,
   Input,
+  OutlinedInput,
   Box,
   Chip,
   ListSubheader,
@@ -40,9 +41,10 @@ type Props = {
   initialValue?: Shop[];
   handleMenuClose: (selectedShops: Shop[]) => void;
   filterAdornment?: boolean;
+  variant?: 'standard' | 'outlined' | 'filled';
 };
 
-export const ShopsSelect: React.FC<Props> = ({ initialValue, handleMenuClose, filterAdornment }) => {
+export const ShopsSelect: React.FC<Props> = ({ initialValue, handleMenuClose, filterAdornment, variant }) => {
   const { data } = useShops();
   const [selectedShops, setSelectedShops] = useState<Shop[]>(initialValue ?? []);
 
@@ -70,11 +72,11 @@ export const ShopsSelect: React.FC<Props> = ({ initialValue, handleMenuClose, fi
   const disabledResetAllButton = selectedShops.length === 0;
 
   return (
-    <FormControl>
+    <FormControl variant={variant}>
       <Select
         multiple
         value={selectedShops}
-        input={<Input />}
+        input={variant === 'outlined' ? <OutlinedInput /> : <Input />}
         startAdornment={filterAdornment ? <Search /> : null}
         renderValue={(selected) => (
           <Box display="flex" flexWrap="wrap" height="100%">
@@ -111,4 +113,9 @@ export const ShopsSelect: React.FC<Props> = ({ initialValue, handleMenuClose, fi
       </Select>
     </FormControl>
   );
+};
+
+ShopsSelect.defaultProps = {
+  variant: 'standard',
+  filterAdornment: false,
 };
