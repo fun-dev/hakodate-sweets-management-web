@@ -10,6 +10,7 @@ import { AddBox } from '@material-ui/icons';
 import { updateSweetRequest } from 'src/lib/api/requests/updateSweetRequest';
 import { useSnackbar } from 'notistack';
 import { AddProductDialog } from './ProductTableActions/AddProductDialog';
+import { useMutateSweet } from 'src/lib/api/requests/useMutateSweet';
 
 const appHeaderHeight = 64;
 const padding = theme.spacing(3);
@@ -19,6 +20,7 @@ const tableBodyHeight = `calc(100vh - ${appHeaderHeight}px - ${padding * 2}px - 
 
 export const ProductTable: React.FC = () => {
   const { data, mutate } = useSweets();
+  const { deleteSweet } = useMutateSweet();
   const { enqueueSnackbar } = useSnackbar();
   const [open, setOpen] = useState(false);
 
@@ -106,10 +108,47 @@ export const ProductTable: React.FC = () => {
                         horizontal: 'center',
                       },
                     });
-                    resolve('');
+                    resolve(null);
                   }
                 }),
-              editTooltip: (sweet) => `${sweet.name}を編集`,
+              editTooltip: (sweet) => `${sweet.name}を編集する`,
+              onRowDelete: (oldData) =>
+                new Promise(async (resolve, reject) => {
+                  const deleteSweetResult = await deleteSweet({ id: oldData.id });
+                  if (deleteSweetResult.status === 204) {
+                    resolve(null);
+                    enqueueSnackbar(`${oldData.name}の削除に成功しました。`, {
+                      variant: 'success',
+                      anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center',
+                      },
+                    });
+                  } else if (deleteSweetResult.status === 401) {
+                    reject();
+                    enqueueSnackbar('権限がありません。', {
+                      variant: 'error',
+                      anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center',
+                      },
+                    });
+                  } else {
+                    reject();
+                    enqueueSnackbar('削除に失敗しました。', {
+                      variant: 'error',
+                      anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'center',
+                      },
+                    });
+                  }
+                }),
+              isDeletable: (rowData) => !rowData.from_rdf,
+              deleteTooltip: (sweet) =>
+                sweet.from_rdf
+                  ? `${sweet.name}は公式サイトに掲載されているため削除できません。`
+                  : `${sweet.name}を削除する`,
             }}
           />
         </TableContainer>

@@ -25,6 +25,7 @@ export const localization: Localization = {
     editRow: {
       cancelTooltip: 'キャンセル',
       saveTooltip: '保存',
+      deleteText: '本当に削除しますか？この操作を後から取り消すことはできません。',
     },
   },
 };
