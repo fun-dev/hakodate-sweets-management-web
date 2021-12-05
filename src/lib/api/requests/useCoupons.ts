@@ -6,13 +6,12 @@ type GetCouponsResponse = {
 };
 
 export function useCoupons() {
-  const { data, response, error, isValidating, revalidate, mutate } = useRequest<GetCouponsResponse, Error>({
+  const { data, error, isValidating, revalidate, mutate } = useRequest<GetCouponsResponse, Error>({
     url: '/coupons',
   });
 
   return {
     data,
-    response,
     error,
     isValidating,
     revalidate,
