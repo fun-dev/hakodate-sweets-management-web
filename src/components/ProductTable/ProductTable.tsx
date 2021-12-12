@@ -79,7 +79,7 @@ export const ProductTable: React.FC = () => {
                 new Promise(async (resolve, reject) => {
                   const result = await updateSweetRequest(
                     { id: newData.id },
-                    { sweet: { small_category_ids: newData.small_categories.map((x) => x.id) } }
+                    { sweet: { name: newData.name, price: newData.price, description: newData.description, small_category_ids: newData.small_categories.map((x) => x.id) } }
                   );
                   if (!result) {
                     enqueueSnackbar('編集権限がありません。', {
