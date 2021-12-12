@@ -10,6 +10,9 @@ type PutSweetPath = {
 
 type PutSweetBody = {
   sweet: {
+    name?: Sweet['name'];
+    price?: Sweet['price'];
+    description?: Sweet['description'];
     small_category_ids: SmallCategory['id'][];
   };
 };

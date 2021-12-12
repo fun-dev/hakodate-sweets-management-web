@@ -1,12 +1,16 @@
 import { ProductTableColumn } from '../ColumnType';
+import { EditableProductName } from './EditableProductName';
 import { ProductName } from './ProductName';
 
 export const productNameColumn: ProductTableColumn = {
   title: '商品名',
-  field: 'product_name',
+  field: 'name',
   align: 'left',
-  editable: 'never',
+  editable: (_, rowData) => !rowData.from_rdf,
   render: (sweet) => <ProductName sweet={sweet} />,
+  editComponent: ({ rowData, value, onChange }) => (
+    <EditableProductName sweet={rowData} draftProductName={value} changeDraftProductName={onChange} />
+  ),
   width: '20rem',
   sorting: false,
   customFilterAndSearch: (filter: string, row) => {
