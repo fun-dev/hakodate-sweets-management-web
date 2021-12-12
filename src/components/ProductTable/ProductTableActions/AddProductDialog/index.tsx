@@ -21,7 +21,7 @@ import {
   CircularProgress,
 } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
-import React, { useState, ChangeEvent, useRef, FormEventHandler } from 'react';
+import React, { useState, ChangeEvent, FormEventHandler } from 'react';
 import styled from 'styled-components';
 import { SmallCategory } from 'src/lib/api/models/Category';
 import { useCategories } from 'src/lib/api/requests/useCategories';
@@ -30,6 +30,7 @@ import { ImageInput } from './ImageInput';
 import { useMutateSweet } from 'src/lib/api/requests/useMutateSweet';
 import { useSweets } from 'src/lib/api/requests/useSweets';
 import { useShops } from 'src/lib/api/requests/useShops';
+import { useSnackbar } from 'notistack';
 
 type Props = {
   open: boolean;
@@ -73,7 +74,7 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
   const { revalidate } = useSweets();
   const [loadingCreate, setLoadingCreate] = useState(false);
   const { data: shopData } = useShops();
-  const ref = useRef<HTMLDivElement>(null);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleInputChange = (key: keyof State) => (e: ChangeEvent<HTMLInputElement>) => {
     setState({ ...state, [key]: e.currentTarget.value });
@@ -90,14 +91,13 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
 
   const handleShopSelect = (selected: Shop) => (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
     setSelectedShop(selected);
-    ref.current.click();
   };
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     setLoadingCreate(true);
 
-    const created = await createSweet({
+    const createSweetResult = await createSweet({
       shopId: selectedShop.id,
       name: state.name,
       description: state.description,
@@ -106,9 +106,32 @@ export const AddProductDialog: React.FC<Props> = ({ open, handleClose }) => {
       productImageFile,
     });
 
-    if (created) {
+    if (createSweetResult.status === 200) {
       await revalidate();
       onClose();
+      enqueueSnackbar(`${createSweetResult.sweet.name}が追加されました。`, {
+        variant: 'success',
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+      });
+    } else if (createSweetResult.status === 401) {
+      enqueueSnackbar('権限がありません。', {
+        variant: 'error',
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+      });
+    } else {
+      enqueueSnackbar('商品の追加に失敗しました。', {
+        variant: 'error',
+        anchorOrigin: {
+          vertical: 'top',
+          horizontal: 'center',
+        },
+      });
     }
 
     setLoadingCreate(false);
