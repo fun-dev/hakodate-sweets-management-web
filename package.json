@@ -18,7 +18,7 @@
     "firebase": "^7.22.0",
     "firebase-admin": "^9.1.1",
     "formik": "^2.2.6",
-    "material-table": "^1.66.0",
+    "material-table": "^1.69.3",
     "next": "9.4.2",
     "nookies": "^2.4.0",
     "notistack": "^1.0.1",
